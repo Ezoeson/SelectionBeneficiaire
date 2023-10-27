@@ -67,7 +67,9 @@ const ListeBeneficiaire = () => {
 
   return (
     <div className='p-4'>
-      <h2 className='text-xl font-semibold dark:text-white'>Liste de tous les Beneficiaires</h2>
+      <h2 className='text-xl font-semibold dark:text-white'>
+        Liste de tous les Beneficiaires
+      </h2>
       <div className='flex items-center justify-end my-3'>
         <button
           onClick={toggleAddModal}
@@ -148,6 +150,7 @@ const ListeBeneficiaire = () => {
         refetch={refetch}
         id={selectedId}
         fokontanyId={fokontanyId}
+        enqueteurId={enqueteurId}
       />
     </div>
   );
@@ -357,7 +360,7 @@ const AddModal = ({ open, setOpen, refetch, fokontanyId, enqueteurId }) => {
   );
 };
 
-const UpdateModal = ({ open, setOpen, refetch, id, fokontanyId }) => {
+const UpdateModal = ({ open, setOpen, refetch, id, fokontanyId,enqueteurId }) => {
   // const schema = yup.object().shape({
   //   addresse: yup.string().required('Entrez l addresse du Beneficiaire'),
   // });
@@ -452,7 +455,7 @@ const UpdateModal = ({ open, setOpen, refetch, id, fokontanyId }) => {
               >
                 {!loadingFokontany &&
                   successFokontany &&
-                  fokontany?.map((item) => (
+                  fokontany?.filter((item) => item.enqueteurId === enqueteurId).map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.nomFokontany}
                     </option>

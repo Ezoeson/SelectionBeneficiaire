@@ -33,8 +33,7 @@ import { FiPlus } from 'react-icons/fi';
 const ListeCommune = () => {
   const { data, isLoading, isSuccess, isError, refetch, isFetching } =
     useGetCommuneQuery();
- 
- 
+
   const [val, setVal] = useState('');
   const filteredCommunes = data?.commune.filter((item) =>
     val === ''

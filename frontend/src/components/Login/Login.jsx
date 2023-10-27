@@ -33,6 +33,7 @@ const Login = () => {
         console.log(result);
       }
     } catch (err) {
+      setIsLoading(false);
       if (
         err.errors[0].longMessage ===
         'Password is incorrect. Try again, or use another method.'
