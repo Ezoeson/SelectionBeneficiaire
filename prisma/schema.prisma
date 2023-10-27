@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_MONGO")
+}
+model Region {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  codeRegion String
+  nomRegion String
+  district District[]
+
+}
+model District {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  codeDistrict String
+  nomDistrict String
+  regionId String @db.ObjectId
+  region Region @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  commune Commune []
+}
+model Commune {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  codeCommune String
+  nomCommune String
+  districtId  String @db.ObjectId
+  district District @relation(fields: [districtId], references: [id],onDelete:Cascade)
+  fokontany Fokontany[]
+}
+model Fokontany{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  codeFokontany String
+  nomFokontany String
+  communeId  String @db.ObjectId
+  commune Commune @relation(fields: [communeId], references: [id],onDelete:Cascade)
+  beneficiaire Beneficiaire[]
+  enqueteurId String ? @db.ObjectId
+  enqueteur Enqueteur? @relation(fields: [enqueteurId], references: [id],onDelete:Cascade)
+}
+
+model Compte{
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   isAdmin Boolean @default(false)
+   pseudo String @unique
+   password String 
+   email String @unique
+   codeEnqueteur String ?  @unique 
+   enqueteur Enqueteur?  @relation(fields: [codeEnqueteur], references: [code],onDelete: Cascade)
+   clerkId String ? @unique
+}
+model Enqueteur{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  nom String
+  age Int 
+  image String ?
+  code String @unique 
+
+  fokontany Fokontany[]
+  compte Compte?
+  beneficiare Beneficiaire[]
+}
+model Beneficiaire{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  nomBeneficiaire String
+  enqueteurId String @db.ObjectId
+  enqueteur Enqueteur @relation(fields: [enqueteurId], references: [id],onDelete:Cascade)
+  fokontanyId String ? @db.ObjectId
+  fokontany Fokontany? @relation(fields: [fokontanyId], references: [id],onDelete:Cascade)
+  createdAt DateTime @default(now())
+  personne Personne[]
+  note Note?
+
+
+}
+model Personne {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  nom String
+  prenom String 
+  age Int
+  image String?
+  cin String ? @unique
+  sexe String
+  beneficiaireId String @db.ObjectId
+  beneficiaire Beneficiaire @relation(fields: [beneficiaireId], references: [id],onDelete:Cascade)
+  type TYPE_PERSONNE
+  reponse Reponse[]
+
+}
+enum TYPE_PERSONNE {
+ RECEPTEUR
+ FAMILLE
+}
+model Formulaire{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  nomFormulaire String @unique
+  categorieQuestion CategorieQuestion[]
+}
+model CategorieQuestion {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  categorieName String @unique
+  codeCategeorie String @unique
+  description String
+  formulaireId String @db.ObjectId
+  formulaire Formulaire @relation(fields: [formulaireId],references: [id],onDelete:Cascade)
+  question Question[]
+
+
+}
+model Question{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  question String
+  scoreOui Int?
+  scoreNon Int?
+  categorieId String  @db.ObjectId
+  categorieQuestion CategorieQuestion @relation(fields: [categorieId], references: [id],onDelete:Cascade)
+  type TYPE_QUESTION
+  reponse Reponse[]
+
+
+}
+enum TYPE_QUESTION {
+  BOOLEAN 
+  INPUT
+}
+model Reponse{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  reponse String
+  questionId String @db.ObjectId
+  question Question @relation(fields: [questionId], references: [id],onDelete:Cascade)
+  personneId String @db.ObjectId
+  personne Personne @relation(fields: [personneId], references: [id],onDelete:Cascade)
+}
+model Note{
+ id String @id @default(auto()) @map("_id") @db.ObjectId
+ value Int
+ beneficiaireId String ? @db.ObjectId @unique
+ beneficiaire Beneficiaire ? @relation(fields: [beneficiaireId], references: [id],onDelete:Cascade)
+}
