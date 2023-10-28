@@ -21,7 +21,7 @@ const VerifierCode = ({ setShowCode, code, setCode }) => {
   };
 
   return (
-    <div className=' md:col-[2] col-[1] relative py-10'>
+    <div className='col-[2]'>
       <h2 className='pl-4 mt-8 text-center font-bold text-3xl py-5 tracking-wide text-indigo-700'>
         <TypeAnimation
           sequence={['', 1000, 'Verification du code ', 1000]}

@@ -60,7 +60,7 @@ export const getCommuneChart = async (req, res, next) => {
 export const getAllcommune = async (req, res, next) => {
   try {
     const page = Number(req.query.pageNumber) || 1;
-    const pageSize = 10; // Number of items per page
+    const pageSize = 20; // Number of items per page
     const offset = (page - 1) * pageSize;
     const commune = await prisma.commune.findMany({
       skip: offset,

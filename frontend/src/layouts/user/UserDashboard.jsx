@@ -28,13 +28,25 @@ import {
   FcCustomerSupport,
   FcBusinesswoman,
 } from 'react-icons/fc';
+import { useGetUserDasboardQuery } from '../../redux/slices/dashboardApiSlice';
+import { FaUserTie } from 'react-icons/fa';
+import { FiUsers } from 'react-icons/fi';
+import { ImUsers } from 'react-icons/im';
+import { ImHome } from 'react-icons/im';
 
 function UserDashboard() {
+  const icons = [ImHome, FiUsers, FaUserTie];
   const { userId } = useAuth();
   const { data: compte } = useGetCompteByClerkQuery(userId);
 
   const enqueteurId = compte?.enqueteur.id;
   console.log(enqueteurId);
+  const {
+    data: enqueteur,
+    isSuccess: success,
+    isLoading: loadingDashboard,
+  } = useGetUserDasboardQuery(enqueteurId);
+  console.log(enqueteur);
   // const { data: note, isSuccess } = useGetNoteByPersonneQuery();
   const {
     data: personneNote,
@@ -51,15 +63,24 @@ function UserDashboard() {
   }
   return (
     <section className='mt-10 px-8'>
-      <div className='max-w[1280px] px-8  mx-auto grid gap-x-10 min-[500px]:grid-cols-2 m sm:grid-cols-3 lg:grid-cols-4 '>
-        <Cards icon={FcBusinessman} label='nombre total des menages' data='4' />
-        <Cards icon={FcBusinessman} label='Beneficiaire' data='4' />
-        <Cards icon={FcBusinessman} label='Beneficiaire' data='4' />
-      </div>
-      <div className='grid md:grid-cols-2 px-8 mt-4 max-w[1280px] gap-y-4 gap-4 mx-auto'>
-        <div className='h-[400px] bg-slate-200 rounded shadow-md'>
-          <p className='p-3 font-semibold'>Nombre de beneficiaire</p>
-          <div className='h-[400px]'>
+      {success && !loadingDashboard && (
+        <div className='max-w[1280px] px-8 mt-4 md:gap-x-10  mx-auto grid  gap-y-5  min-[500px]:grid-cols-2  sm:grid-cols-3 lg:grid-cols-4'>
+          <Cards
+            icon={ImHome}
+            label='Menage'
+            data={enqueteur?.nombreBe.length}
+          />
+          <Cards
+            icon={ImHome}
+            label='Personne'
+            data={enqueteur?.nombrePer.length}
+          />
+        </div>
+      )}
+      <div className='grid md:grid-cols-2  px-8 mt-4 max-w[1280px] gap-y-4 gap-4 '>
+        <div className='h-[450px] hidden md:block  bg-slate-100  dark:bg-slate-900 w-[800px]  rounded shadow-md shadow-blue-800'>
+          <p className='p-3 font-semibold dark:text-slate-100'>Nombre de beneficiaire</p>
+          <div className='h-[400px] w[1000px]'>
             {isSuccess && (
               <BarChart
                 data={personneNote.Note}
@@ -68,16 +89,16 @@ function UserDashboard() {
             )}
           </div>
         </div>
-        <div className='h-[400px] bg-slate-200 rounded shadow-md'>
+        {/* <div className='h-[400px] bg-slate-200 rounded shadow-md'>
           <p className='p-3  font-semibold'>Nombre de beneficiaire</p>
           <div className='h-[400px]'>
             <LineChart
               name='Nombre de beneficiaire'
-              data={[1,2,3,5]}
-              categories={['dimanche','Lunid','Mardi','Jeudi']}
+              data={[1, 2, 3, 5]}
+              categories={['dimanche', 'Lunid', 'Mardi', 'Jeudi']}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -43,7 +43,6 @@ const ListeBeneficiaire = () => {
   const { data: compte } = useGetCompteByClerkQuery(userId);
   const fokontanyId = compte?.enqueteur.id;
   console.log(fokontanyId);
-
   const {
     data: beneficiaire,
     isLoading,
@@ -52,16 +51,17 @@ const ListeBeneficiaire = () => {
     refetch,
     isFetching,
   } = useGetBeneficiaireQuery();
-
+  
   const [selectedId, setSelectedId] = useState('');
-
+  
   const [deleteModal, setDeleteModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
-
+  
   const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const toggleAddModal = () => setAddModal(!addModal);
   const toggleUpdateModal = () => setUpdateModal(!addModal);
+
 
   const enqueteurId = compte?.enqueteur.id;
 

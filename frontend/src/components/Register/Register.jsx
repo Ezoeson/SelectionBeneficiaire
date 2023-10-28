@@ -47,7 +47,7 @@ const Register = () => {
 
   return (
     <>
-      <motion.div className=' flex justify-center  items-center space-x-5 h-screen '>
+      <motion.div className='flex justify-center dark:bg-slate-100 items-center space-x-5 h-screen'>
         <div className='grid md:grid-cols-[700px,500px] grid-cols-[2px,1fr] border rounded-lg bg-transparent h-[500px] shadow-lg shadow-indigo-600'>
           <motion.div className='h-full rounded-l-lg col-[1] md:block hidden'>
             <Slide />

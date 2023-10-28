@@ -39,14 +39,13 @@ const RouterProvider = () => {
   const { userId } = useAuth();
   const { data: compte, isLoading } = useGetCompteByClerkQuery(userId);
   const isAdmin = compte?.isAdmin;
-  
+
   return (
     <>
       {isLoading ? (
         <NavLoader />
       ) : (
         <Routes>
-          
           <Route path='*' element={<ErrorPage />} />
           <Route path='/' element={<AdminLayout />}>
             <Route path='/' element={<BodyContentLayout />}>
@@ -72,8 +71,11 @@ const RouterProvider = () => {
                     element={<EnqueteurLayout />}
                   />
                   <Route path='/beneficiaires' element={<Beneficiaire />} />
-                  <Route path='/parametreCompte' element={<ParametreCompte />} />
-                  
+                  <Route
+                    path='/parametreCompte'
+                    element={<ParametreCompte />}
+                  />
+
                   <Route path='/question' element={<QuestionLayout />}>
                     <Route path='/question' element={<ListeFormulaire />} />
                     <Route

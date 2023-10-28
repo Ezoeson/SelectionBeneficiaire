@@ -191,16 +191,59 @@ export const userDashboard = async (req, res, next) => {
     select: {
       fokontany: {
         select: {
+          
           _count: {
             select: {
               beneficiaire: true,
+              
             },
           },
+          beneficiaire:{
+            select:{
+              _count:{
+                select:{
+                  personne:true
+                }
+              }
+            }
+          }
         },
       },
     },
   });
-  res.status(200).json({ user });
+  const nombreBe = user.fokontany.map((item)=> (item._count.beneficiaire))
+  const nombrePer = user.fokontany.map((item)=>(
+    item.beneficiaire.map((item)=>(
+      item._count.personne
+    ))
+  ))
+  res.status(200).json({ nombreBe,nombrePer });
+};
+
+export const getBeneficiaireCountByDate = async (req, res, next) => {
+  const results = await prisma.beneficiaire.groupBy({
+    by: ['createdAt'], // Remplacez 'createdAt' par le nom du champ de date dans votre modèle
+    _count: {
+      _all: true,
+    },
+  });
+
+  const groupedDates = {};
+
+  results.forEach((result) => {
+    const date = new Date(result.createdAt).toLocaleDateString();
+    if (groupedDates[date]) {
+      groupedDates[date] += result._count._all;
+    } else {
+      groupedDates[date] = result._count._all;
+    }
+  });
+
+  const date = Object.keys(groupedDates);
+  const nombre = Object.values(groupedDates);
+
+
+  res.status(200).json({ date, nombre });
 };
 
 

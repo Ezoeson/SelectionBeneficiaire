@@ -64,15 +64,20 @@ const ListeFokontany = () => {
     isLoading: loadingClasse,
     isSuccess: successClasse,
   } = useGetCommuneQuery();
-  console.log(commune?.commune[0].id);
-
+  const communeid = commune?.commune[0].id;
+  
+  
   const { idCommune } = useSelector((state) => state.filtrageCommune);
-  const [i, setI] = useState(0);
-  const [communeId, setCommuneId] = useState(
-    idCommune == '' ? commune?.commune[i].id : idCommune
-  );
-
-  console.log(i);
+  // const [i, setI] = useState(0);
+  // const [communeId, setCommuneId] = useState(
+  //   idCommune == '' ? commune?.commune[i].id : idCommune
+  // );
+  
+ 
+  
+ 
+  
+  console.log(idCommune);
   return (
     <div className='p-4'>
       <div className='flex space-x-2 '>
@@ -83,7 +88,6 @@ const ListeFokontany = () => {
           id='classe'
           name='classe'
           onChange={(e) => {
-            setI(i + 1);
             dispatch(setIdValue(e.target.value));
           }}
           className='block w-[230px] dark:bg-slate-900 dark:text-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
@@ -146,11 +150,10 @@ const ListeFokontany = () => {
                 </div>
               )} */}
               {filteredFokontany
-                ?.filter(
-                  (item) =>
-                   commune && commune.commune && commune.commune[i] &&
-                    item.communeId === idCommune ||
-                    item.communeId === commune?.commune[i]?.id
+                ?.filter((item) =>
+                  idCommune === ''
+                    ? communeid === item.communeId
+                    : item.communeId === idCommune
                 )
                 .map((item) => (
                   <TableRow

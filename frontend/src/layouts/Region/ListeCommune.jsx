@@ -29,6 +29,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Pagination from '../../components/Pagination/Pagination';
 import { RiSearchLine } from 'react-icons/ri';
 import { FiPlus } from 'react-icons/fi';
+import { ReactPaginatation } from '../../components/Pagination/ReactPagination';
+
 
 const ListeCommune = () => {
   const { data, isLoading, isSuccess, isError, refetch, isFetching } =
@@ -140,6 +142,7 @@ const ListeCommune = () => {
             isError && <ErrorPage refetch={refetch} />
           )}
         </div>
+        {/* <ReactPaginatation itemsPerPage={2} /> */}
       </div>
 
       <DeleteModal

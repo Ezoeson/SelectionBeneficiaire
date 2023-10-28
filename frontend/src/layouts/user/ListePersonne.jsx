@@ -68,7 +68,6 @@ const ListePersonne = () => {
   const { data: compte } = useGetCompteByClerkQuery(userId);
   const enqueteurId = compte?.enqueteur.id;
 
-
   return (
     <div className='p-4'>
       <h2 className='text-xl font-semibold'>Liste de tous les Personnnes</h2>
@@ -330,7 +329,7 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
     <Modal open={open} setOpen={setOpen}>
       {show ? (
         <>
-          <div className='bg-white dark:bg-slate-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4'>
+          <div className='bg-white dark:bg-slate-900 px-4 pb-4 pt-5 mb-10 sm:p-6 sm:pb-4'>
             <div className='sm:flex sm:items-start'>
               <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10'>
                 <ExclamationTriangleIcon

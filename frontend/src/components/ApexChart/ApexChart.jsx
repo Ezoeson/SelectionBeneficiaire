@@ -96,7 +96,7 @@ const ApexChart = ({ serie, categories }) => {
             [
               {
                 offset: 0,
-                color: '#e11d48',
+                color: '#0ea5e9',
                 opacity: 1,
               },
               {

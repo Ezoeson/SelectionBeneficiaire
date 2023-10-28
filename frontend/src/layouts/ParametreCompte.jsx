@@ -115,13 +115,13 @@ const ParametreCompte = () => {
                   />
                 </div>
               )}
-              {compte.map((item) => (
+              {compte?.filter((item)=>(!item.isAdmin)).map((item) => (
                 <TableRow
                   key={item.id}
                   col={'md:grid-cols-[1fr,2fr,2fr,max-content] items-center'}
                 >
                   <div className='flex items-center space-x-2'>
-                    {item.enqueteur.image === null ? (
+                    {item.enqueteur?.image === null ? (
                       <img
                         src='avatar3.jpg'
                         alt=''
@@ -129,7 +129,7 @@ const ParametreCompte = () => {
                       />
                     ) : (
                       <img
-                        src={'http://localhost:5000' + item.enqueteur.image}
+                        src={'http://localhost:5000' + item.enqueteur?.image}
                         alt=''
                         className='w-10 h-10 rounded-full object-cover'
                       />
