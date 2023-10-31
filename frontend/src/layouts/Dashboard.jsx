@@ -100,7 +100,7 @@ const Dashboard = () => {
             Nombre de beneficiaire datant {dateEnFrancais}
           </p>
           <div className='h-[400px] w-full ml-2'>
-            {success && !loadingDashboard && (
+            {success && !loadingDashboard && dates &&  (
               <LineChart
                 name='Nombre de beneficiaire'
                 data={dates?.nombre}

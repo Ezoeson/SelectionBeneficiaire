@@ -184,40 +184,60 @@ export const nombreBeneficiaire = async (req, res, next) => {
 };
 
 export const userDashboard = async (req, res, next) => {
-  const user = await prisma.enqueteur.findUnique({
+  const nombreBeneficiaire = await prisma.fokontany.findMany({
     where: {
-      id: req.params.id,
+      enqueteur: {
+        id: req.params.id,
+      },
     },
     select: {
-      fokontany: {
+      _count: {
         select: {
-          
-          _count: {
-            select: {
-              beneficiaire: true,
-              
-            },
-          },
-          beneficiaire:{
-            select:{
-              _count:{
-                select:{
-                  personne:true
-                }
-              }
-            }
-          }
+          beneficiaire: true,
         },
       },
     },
   });
-  const nombreBe = user.fokontany.map((item)=> (item._count.beneficiaire))
-  const nombrePer = user.fokontany.map((item)=>(
-    item.beneficiaire.map((item)=>(
-      item._count.personne
-    ))
-  ))
-  res.status(200).json({ nombreBe,nombrePer });
+  const nombre = nombreBeneficiaire.map((item) => item._count.beneficiaire);
+
+  const total = nombre.reduce((acc, current) => acc + current, 0);
+
+  console.log({ total });
+  res.status(200).json({ total });
+  // const user = await prisma.enqueteur.findUnique({
+  //   where: {
+  //     id: req.params.id,
+  //   },
+  //   select: {
+  //     fokontany: {
+  //       select: {
+
+  //         _count: {
+  //           select: {
+  //             beneficiaire: true,
+
+  //           },
+  //         },
+  //         beneficiaire:{
+  //           select:{
+  //             _count:{
+  //               select:{
+  //                 personne:true
+  //               }
+  //             }
+  //           }
+  //         }
+  //       },
+  //     },
+  //   },
+  // });
+  // const nombreBe = user.fokontany.map((item)=> (item._count.beneficiaire))
+  // const nombrePer = user.fokontany.map((item)=>(
+  //   item.beneficiaire.map((item)=>(
+  //     item._count.personne
+  //   ))
+  // ))
+  // res.status(200).json({ nombreBe,nombrePer });
 };
 
 export const getBeneficiaireCountByDate = async (req, res, next) => {
@@ -242,9 +262,5 @@ export const getBeneficiaireCountByDate = async (req, res, next) => {
   const date = Object.keys(groupedDates);
   const nombre = Object.values(groupedDates);
 
-
   res.status(200).json({ date, nombre });
 };
-
-
-

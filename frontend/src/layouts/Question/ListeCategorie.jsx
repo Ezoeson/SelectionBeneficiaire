@@ -69,7 +69,7 @@ const ListeCategorie = () => {
           Ajouter Categorie
         </button>
       </div>
-      <div className='w-full min-h-[150px] bg-slate-50  rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
+      <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[2fr,1fr,2fr,max-content]'>
           <div className='md:hidden'>Informations</div>
 
@@ -338,7 +338,7 @@ const AddModal = ({ open, setOpen, refetch }) => {
                 id='form'
                 name='form'
                 {...register('formulaireId')}
-                className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-slate-100 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
               >
                 {!loadingClasse &&
                   successClasse &&

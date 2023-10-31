@@ -40,7 +40,7 @@ model Fokontany{
   commune Commune @relation(fields: [communeId], references: [id],onDelete:Cascade)
   beneficiaire Beneficiaire[]
   enqueteurId String ? @db.ObjectId
-  enqueteur Enqueteur? @relation(fields: [enqueteurId], references: [id],onDelete:Cascade)
+  enqueteur Enqueteur? @relation(fields: [enqueteurId], references: [id],onDelete:SetNull)
 }
 
 model Compte{
@@ -67,8 +67,8 @@ model Enqueteur{
 model Beneficiaire{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   nomBeneficiaire String
-  enqueteurId String @db.ObjectId
-  enqueteur Enqueteur @relation(fields: [enqueteurId], references: [id],onDelete:Cascade)
+  enqueteurId String? @db.ObjectId
+  enqueteur Enqueteur? @relation(fields: [enqueteurId], references: [id],onDelete:SetNull)
   fokontanyId String ? @db.ObjectId
   fokontany Fokontany? @relation(fields: [fokontanyId], references: [id],onDelete:Cascade)
   createdAt DateTime @default(now())
@@ -94,6 +94,9 @@ model Personne {
 enum TYPE_PERSONNE {
  RECEPTEUR
  FAMILLE
+ CHEF_MENAGE
+ ENFANT
+ CONJOINT
 }
 model Formulaire{
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -130,8 +133,8 @@ enum TYPE_QUESTION {
 model Reponse{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   reponse String
-  questionId String @db.ObjectId
-  question Question @relation(fields: [questionId], references: [id],onDelete:Cascade)
+  questionId String ?@db.ObjectId
+  question Question? @relation(fields: [questionId], references: [id],onDelete:SetNull)
   personneId String @db.ObjectId
   personne Personne @relation(fields: [personneId], references: [id],onDelete:Cascade)
 }

@@ -47,6 +47,7 @@ function UserDashboard() {
     isLoading: loadingDashboard,
   } = useGetUserDasboardQuery(enqueteurId);
   console.log(enqueteur);
+
   // const { data: note, isSuccess } = useGetNoteByPersonneQuery();
   const {
     data: personneNote,
@@ -68,13 +69,13 @@ function UserDashboard() {
           <Cards
             icon={ImHome}
             label='Menage'
-            data={enqueteur?.nombreBe.length}
+            data={enqueteur?.total}
           />
-          <Cards
+          {/* <Cards
             icon={ImHome}
             label='Personne'
             data={enqueteur?.nombrePer.length}
-          />
+          /> */}
         </div>
       )}
       <div className='grid md:grid-cols-2  px-8 mt-4 max-w[1280px] gap-y-4 gap-4 '>

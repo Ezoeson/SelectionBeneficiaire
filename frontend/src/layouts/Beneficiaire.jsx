@@ -107,7 +107,7 @@ const Beneficiaire = () => {
       </h2>
       <div className='flex items-center justify-between my-3'>
         <div className='flex flex-col space-y-2'>
-          <div className='bg-blue-400 hover-bg-blue-700 mx-auto text-white font-bold py-2 px-4 flex justify-between rounded'>
+          <div className=' hover-bg-blue-700  w-[100px] text-white font-bold py-2 px-4  rounded'>
             <CsvDownloader
               columns={columns}
               filename={'beneficiaires.csv'}
@@ -117,8 +117,8 @@ const Beneficiaire = () => {
               separator=';'
               onClick={exportData}
             >
-            
-              <FcDownload className='text-4xl' />
+              <img src='csv.png' alt='' className='rounded w-10 h-10' />
+              Export
             </CsvDownloader>
           </div>
 
@@ -132,7 +132,8 @@ const Beneficiaire = () => {
             />
           </div>
         </div>
-        <div
+        
+        {/* <div
           onClick={toggleAddModal}
           className='flex justify-center cursor-pointer rounded-md bg-gradient-to-r from-cyan-400 to-indigo-600 items-center px-2 md:w-max w-20'
         >
@@ -140,7 +141,7 @@ const Beneficiaire = () => {
           <button className=' text-white py-2 px-4   hidden md:block'>
             Ajout beneficiaire
           </button>
-        </div>
+        </div> */}
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[1fr,2fr,1fr,2fr,max-content]'>

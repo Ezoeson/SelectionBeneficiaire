@@ -17,7 +17,7 @@ import {
   useGetOnePersonneQuery,
   useUpdatePersonneMutation,
 } from '../../redux/slices/personneApiSlice';
-import { useGetEnqueteurQuery } from '../../redux/slices/enqueteurApiSlice';
+
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import {
@@ -28,19 +28,16 @@ import { Dialog, Transition } from '@headlessui/react';
 import Message from '../../components/Message/Message';
 import SlideOver from '../../components/Modal/SlideOver';
 import Input from '../../components/Input/Input';
-import { FaPersonCircleQuestion } from 'react-icons/fa6';
+
+import { TbMessageCircleQuestion } from 'react-icons/tb';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUploadImageMutation } from '../../redux/slices/uploadSlice';
-import { useUser, useAuth } from '@clerk/clerk-react';
-import {
-  compteSlice,
-  useGetCompteByClerkQuery,
-  useGetCompteQuery,
-} from '../../redux/slices/compteApiSlice';
+import { useAuth } from '@clerk/clerk-react';
+import { useGetCompteByClerkQuery } from '../../redux/slices/compteApiSlice';
 
 const ListePersonne = () => {
   const {
@@ -70,7 +67,9 @@ const ListePersonne = () => {
 
   return (
     <div className='p-4'>
-      <h2 className='text-xl font-semibold'>Liste de tous les Personnnes</h2>
+      <h2 className='text-xl font-semibold dark:text-slate-100'>
+        Liste de tous les Personnnes
+      </h2>
       <div className='flex items-center justify-end my-3'>
         <button
           onClick={toggleAddModal}
@@ -80,7 +79,7 @@ const ListePersonne = () => {
         </button>
       </div>
       <div className='w-full min-h-[150px] bg-slate-50  dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
-        <TableHeader col='md:grid-cols-[2fr,2fr,1fr,1fr,1fr,1fr,max-content]'>
+        <TableHeader col='md:grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr,max-content]'>
           <div className='md:hidden'>Liste personne</div>
           <div className='hidden md:block'>Nom</div>
           <div className='hidden md:block'>Prenom</div>
@@ -109,7 +108,7 @@ const ListePersonne = () => {
                   <TableRow
                     key={item.id}
                     col={
-                      'md:grid-cols-[2fr,2fr,1fr,1fr,1fr,1fr,max-content] items-center'
+                      'md:grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr,max-content] items-center'
                     }
                   >
                     <div className='flex items-center space-x-2'>
@@ -220,7 +219,10 @@ const Actions = ({
 
   return (
     <div className='flex items-center justify-center space-x-4'>
-      <TbEyeQuestion onClick={showFunc} className='text-xl cursor-pointer ' />
+      <TbMessageCircleQuestion
+        onClick={showFunc}
+        className='text-xl cursor-pointer '
+      />
       <HiMiniTrash onClick={deleteFunc} className='text-xl' />
       <HiMiniPencil onClick={updateFunc} className='text-xl' />
     </div>
@@ -518,6 +520,9 @@ const AddModal = ({ open, setOpen, refetch, enqueteurId }) => {
               >
                 <option value='RECEPTEUR'>Recepteur</option>
                 <option value='FAMILLE'>Famille</option>
+                <option value='CHEF_MENAGE'> Chef_menage</option>
+                <option value='ENFANT'>Enfant</option>
+                <option value='CONJOINT'>Conjoint</option>
               </select>
             </div>
 
@@ -748,6 +753,9 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
               >
                 <option value='RECEPTEUR'>Recepteur</option>
                 <option value='FAMILLE'>Famille</option>
+                <option value='CHEF_MENAGE'> Chef_menage</option>
+                <option value='ENFANT'>Enfant</option>
+                <option value='CONJOINT'>Conjoint</option>
               </select>
             </div>
 

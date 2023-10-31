@@ -205,42 +205,56 @@ function Reponse() {
               <motion.div variants={item} key={question.id}>
                 <p>{question.question}</p>
                 <div className='flex justify-center  w-full items-center'>
-                  <div className='w-full '>
-                    <div className='flex items-center gap-x-3'>
+                  {question.type === 'INPUT' && (
+                    <div>
                       <input
-                        id='push-everything'
-                        name={`question_${question.id}`}
-                        value='oui'
-                        onChange={() => handlereponseChange(question.id, 'oui')}
-                        type='radio'
-                        checked={selectedReponses[question.id] === 'oui'}
-                        className='h-4 w-4 border-gray-300 text-indigo-600  cursor-pointer focus:ring-indigo-600'
+                        type='text'
+                        className='block w-full rounded-md border-0  py-1.5 text-gray-900 dark:bg-slate-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                       />
-                      <label
-                        htmlFor='push-everything'
-                        className='block text-sm font-medium  leading-6 dark:text-white text-gray-900'
-                      >
-                        Oui
-                      </label>
                     </div>
-                    <div className='flex items-center gap-x-3'>
-                      <input
-                        id='push-everything'
-                        type='radio'
-                        name={`question_${question.id}`}
-                        value='non'
-                        checked={selectedReponses[question.id] === 'non'}
-                        onChange={() => handlereponseChange(question.id, 'non')}
-                        className='h-4 w-4 border-gray-300 text-indigo-600  cursor-pointer cursor:pointer focus:ring-indigo-600'
-                      />
-                      <label
-                        htmlFor='push-everything'
-                        className='block text-sm font-medium leading-6 dark:text-white text-gray-900'
-                      >
-                        Non
-                      </label>
+                  )}
+                  {question?.type === 'BOOLEAN' && (
+                    <div className='w-full '>
+                      <div className='flex items-center gap-x-3'>
+                        <input
+                          id='push-everything'
+                          name={`question_${question.id}`}
+                          value='oui'
+                          onChange={() =>
+                            handlereponseChange(question.id, 'oui')
+                          }
+                          type='radio'
+                          checked={selectedReponses[question.id] === 'oui'}
+                          className='h-4 w-4 border-gray-300 text-indigo-600  cursor-pointer focus:ring-indigo-600'
+                        />
+                        <label
+                          htmlFor='push-everything'
+                          className='block text-sm font-medium  leading-6 dark:text-white text-gray-900'
+                        >
+                          Oui
+                        </label>
+                      </div>
+                      <div className='flex items-center gap-x-3'>
+                        <input
+                          id='push-everything'
+                          type='radio'
+                          name={`question_${question.id}`}
+                          value='non'
+                          checked={selectedReponses[question.id] === 'non'}
+                          onChange={() =>
+                            handlereponseChange(question.id, 'non')
+                          }
+                          className='h-4 w-4 border-gray-300 text-indigo-600  cursor-pointer cursor:pointer focus:ring-indigo-600'
+                        />
+                        <label
+                          htmlFor='push-everything'
+                          className='block text-sm font-medium leading-6 dark:text-white text-gray-900'
+                        >
+                          Non
+                        </label>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </motion.div>
             ))}

@@ -10,6 +10,11 @@ export const getAllBeneficiaire = async (req, res, next) => {
     const beneficiaire = await prisma.beneficiaire.findMany({
       skip: offset,
       take: pageSize,
+      orderBy: {
+        note: {
+          value: 'desc', // Triez par la valeur de la note en ordre décroissant
+        },
+      },
 
       include: {
         note: true,
@@ -131,7 +136,7 @@ export const createBeneficiaire = async (req, res, next) => {
   dernierChiffre++;
 
   const nom = `BNFC numero: ${dernierChiffre} ${new Date().toLocaleDateString()} `;
-  
+
   const beneficiaires = await prisma.beneficiaire.create({
     data: { ...req.body, nomBeneficiaire: nom },
   });
