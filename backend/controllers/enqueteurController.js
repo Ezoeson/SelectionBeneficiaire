@@ -222,9 +222,9 @@ export const findBeneficiaireNote = async (req, res, next) => {
   // const Note = [];
   // const nomPersonne = [];
   // const Note = enqueteur.beneficiare.map((benef) => benef.note.value);
-  const nomPersonne = enqueteur.beneficiare
-    .filter((benef) => benef.personne.length > 0) // Filtrez les objets personne vides
-    .map((benef) => benef.personne[0].nom); // Utilisation de [0] car personne est un tableau
+  const nomPersonne = enqueteur?.beneficiare
+    .filter((benef) => benef?.personne.length > 0) // Filtrez les objets personne vides
+    .map((benef) => benef?.personne[0]?.nom); // Utilisation de [0] car personne est un tableau
 
   const Note = enqueteur.beneficiare
     .map((benef) => benef.note?.value) // Utilisation de ?. pour gérer les valeurs null
@@ -260,11 +260,11 @@ export const findBeneficiaire = async (req, res, next) => {
   // const Note = [];
   // const nomPersonne = [];
   // const Note = enqueteur.beneficiare.map((benef) => benef.note.value);
-  const nomPersonne = enqueteur.beneficiare
-    .filter((benef) => benef.personne.length > 0) // Filtrez les objets personne vides
+  const nomPersonne = enqueteur?.beneficiare
+    .filter((benef) => benef?.personne.length > 0) // Filtrez les objets personne vides
     .map((benef) => benef.personne[0].nom); // Utilisation de [0] car personne est un tableau
 
-  const Note = enqueteur.beneficiare
+  const Note = enqueteur?.beneficiare
     .map((benef) => benef.note?.value) // Utilisation de ?. pour gérer les valeurs null
     .filter((value) => value !== undefined);
 

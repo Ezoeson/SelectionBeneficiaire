@@ -28,16 +28,26 @@ import {
   FcCustomerSupport,
   FcBusinesswoman,
 } from 'react-icons/fc';
-import { useGetUserDasboardQuery } from '../../redux/slices/dashboardApiSlice';
+import { useGetUserDasboardQuery,useGetDasboardQuery } from '../../redux/slices/dashboardApiSlice';
 import { FaUserTie } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { ImUsers } from 'react-icons/im';
 import { ImHome } from 'react-icons/im';
+import { AiOutlineForm } from 'react-icons/ai';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function UserDashboard() {
-  const icons = [ImHome, FiUsers, FaUserTie];
+
+  const icons = [AiOutlineForm, AiOutlineForm, AiOutlineForm];
   const { userId } = useAuth();
   const { data: compte } = useGetCompteByClerkQuery(userId);
+   const {
+     data: stats,
+     isLoading: loading,
+     isSuccess: succes,
+   } = useGetDasboardQuery();
+   console.log(stats);
 
   const enqueteurId = compte?.enqueteur.id;
   console.log(enqueteurId);
@@ -64,23 +74,42 @@ function UserDashboard() {
   }
   return (
     <section className='mt-10 px-8'>
-      {success && !loadingDashboard && (
-        <div className='max-w[1280px] px-8 mt-4 md:gap-x-10  mx-auto grid  gap-y-5  min-[500px]:grid-cols-2  sm:grid-cols-3 lg:grid-cols-4'>
-          <Cards
-            icon={ImHome}
-            label='Menage'
-            data={enqueteur?.total}
-          />
-          {/* <Cards
-            icon={ImHome}
-            label='Personne'
-            data={enqueteur?.nombrePer.length}
-          /> */}
-        </div>
-      )}
+      <div className='max-w[1280px] px-8 mt-4  mx-auto grid  gap-y-5  min-[500px]:grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 '>
+        {success &&
+          !loadingDashboard &&
+          enqueteur.statistic.map((stat, index) => (
+            <Cards
+              key={index}
+              icon={icons[index]}
+              label={stat.label}
+              data={stat.data}
+            />
+          ))}
+        {loadingDashboard && (
+          <div className='flex space-x-3'>
+            <div className='mt-2 py-5'>
+              <Skeleton width={250} height={90} />
+            </div>
+
+            <div className='mt-2 py-5'>
+              <Skeleton width={250} height={90} />
+            </div>
+
+            <div className='mt-2 py-5'>
+              <Skeleton width={250} height={90} />
+            </div>
+            <div className='mt-2 py-5'>
+              <Skeleton width={250} height={90} />
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className='grid md:grid-cols-2  px-8 mt-4 max-w[1280px] gap-y-4 gap-4 '>
         <div className='h-[450px] hidden md:block  bg-slate-100  dark:bg-slate-900 w-[800px]  rounded shadow-md shadow-blue-800'>
-          <p className='p-3 font-semibold dark:text-slate-100'>Nombre de beneficiaire</p>
+          <p className='p-3 font-semibold dark:text-slate-100'>
+            Nombre de beneficiaire
+          </p>
           <div className='h-[400px] w[1000px]'>
             {isSuccess && (
               <BarChart

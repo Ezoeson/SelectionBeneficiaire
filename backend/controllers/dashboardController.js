@@ -91,7 +91,9 @@ export const nombreBeneficiaireByJourBysemaine = async (req, res, next) => {
   });
 
   const Note = topNotes.map((note) => note.value);
-  const nomPersonne = topNotes.map((note) => note.beneficiaire.personne[0].nom);
+  const nomPersonne = topNotes.map(
+    (note) => note.beneficiaire?.personne[0].nom
+  );
 
   // res.status(200).json({ Note, nomPersonne });
 
@@ -184,6 +186,26 @@ export const nombreBeneficiaire = async (req, res, next) => {
 };
 
 export const userDashboard = async (req, res, next) => {
+  const countFormulaire = await prisma.formulaire.count()
+  const countCategorie = await prisma.categorieQuestion.count()
+  const countQuestion = await prisma.question.count()
+
+ const statistic = [
+   {
+     label: 'Nombre des Formulaires',
+     data: countFormulaire,
+   },
+   {
+     label: 'Nombre des Categories',
+     data: countCategorie,
+   },
+   {
+     label: 'Nombre des Questions',
+     data: countQuestion,
+   },
+  
+ ];
+
   const nombreBeneficiaire = await prisma.fokontany.findMany({
     where: {
       enqueteur: {
@@ -202,8 +224,8 @@ export const userDashboard = async (req, res, next) => {
 
   const total = nombre.reduce((acc, current) => acc + current, 0);
 
-  console.log({ total });
-  res.status(200).json({ total });
+  console.log({ total,statistic });
+  res.status(200).json({ total, statistic });
   // const user = await prisma.enqueteur.findUnique({
   //   where: {
   //     id: req.params.id,
