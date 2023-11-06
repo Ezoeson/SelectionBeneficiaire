@@ -92,19 +92,19 @@ const RouterProvider = () => {
               {!isAdmin && (
                 <>
                   <Route path='/' element={<UserDashboard />} />
-                  <Route path='/beneficiaire' element={<BeneficiaireLayout />}>
+                  <Route path='/menage' element={<BeneficiaireLayout />}>
                     <Route
-                      path='/beneficiaire'
+                      path='/menage'
                       element={<ListeBeneficiare />}
                     />
                     <Route
-                      path='/beneficiaire/personne'
+                      path='/menage/personne'
                       element={<ListePersonne />}
                     />
                   </Route>
                   <Route path='/reponse/:id' element={<Reponse />} />
                   {/* <Route path='/note' element={<Beneficiaire />} /> */}
-                  <Route path='/menage' element={<Menage />} />
+                  <Route path='/beneficiaire' element={<Menage />} />
                 </>
               )}
             </Route>

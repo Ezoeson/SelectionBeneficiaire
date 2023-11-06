@@ -16,6 +16,7 @@ import { ClerkProvider, ClerkLoading, ClerkLoaded } from '@clerk/clerk-react';
 import { MoonLoader } from 'react-spinners';
 import { SidebarContext } from './contexts/SidebarContext';
 import ClerkLoader from './components/clerkLoader/ClerkLoader';
+import LoadingFim from './components/LOadingFimisa/LoadingFim';
 
 function App() {
   const { baseColor, highLightColor } = useContext(SidebarContext);
@@ -25,7 +26,7 @@ function App() {
       <ClerkLoading>
         <SkeletonTheme color='#202020' highlightColor='#444'>
           <div className='flex justify-center  items-center mt-[300px]'>
-            <ClerkLoader />
+            <LoadingFim/>
           </div>
         </SkeletonTheme>
       </ClerkLoading>

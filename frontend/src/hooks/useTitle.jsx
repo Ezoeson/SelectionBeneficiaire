@@ -46,11 +46,11 @@ const useTitle = () => {
       case '/parametreCompte':
         setTitle('Parametre du compte');
         break;
-      case '/beneficiaire':
-        setTitle('Beneficiare');
+      case '/menage':
+        setTitle('Menage');
         break;
-      case '/beneficiaire/personne':
-        setTitle('Beneficiaire');
+      case '/menage/personne':
+        setTitle('menage');
         break;
       default:
         setTitle('Dashboard');

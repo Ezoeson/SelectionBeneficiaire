@@ -57,18 +57,18 @@ const useSubRoutes = () => {
         active: pathname === '/question/questions',
       },
       {
-        label: 'Liste des benficiaires',
-        path: '/beneficiaire',
-        page: 'beneficiaire',
+        label: 'Liste des Menages',
+        path: '/menage',
+        page: 'menage',
 
-        active: pathname === '/beneficiaire',
+        active: pathname === '/menage',
       },
       {
         label: 'Liste des personnes',
-        path: '/beneficiaire/personne',
-        page: 'beneficiaire',
+        path: '/menage/personne',
+        page: 'menage',
 
-        active: pathname === '/beneficiaire/personne',
+        active: pathname === '/menage/personne',
       },
     ],
     [pathname]

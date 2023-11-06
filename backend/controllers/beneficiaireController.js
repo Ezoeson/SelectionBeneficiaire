@@ -5,12 +5,10 @@ import asyncHandler from '../middleware/asyncHandler.js';
 export const getAllBeneficiaire = asyncHandler(async (req, res, next) => {
   try {
     const page = Number(req.query.pageNumber) || 1;
-    const pageSize = 1000000; // Number of items per page
-    const offset = (page - 1) * pageSize;
+
 
     const beneficiaire = await prisma.beneficiaire.findMany({
-      skip: offset,
-      take: pageSize,
+  
       orderBy: {
         note: {
           value: 'desc', // Triez par la valeur de la note en ordre décroissant
@@ -41,11 +39,11 @@ export const getAllBeneficiaire = asyncHandler(async (req, res, next) => {
     });
     res.status(200).json({
       beneficiaire,
-      page,
-      pages: Math.ceil(beneficiaire.length / pageSize),
-      totalPage: beneficiaire.length,
+      
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json(error)
+  }
 });
 export const getBeneficiaireById = asyncHandler(async (req, res, next) => {
   const beneficiaire = await prisma.beneficiaire.findUnique({

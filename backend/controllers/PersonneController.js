@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import asyncHandler from '../middleware/asyncHandler.js';
 
 export const getAllPersonne = async (req, res, next) => {
   try {
@@ -24,7 +25,7 @@ export const getAllPersonne = async (req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-export const createPersonne = async (req, res, next) => {
+export const createPersonne = asyncHandler( async (req, res, next) => {
   // const { nom, prenom, image, cin, age, beneficiaireId, type, sexe } = req.body;
   const personne = await prisma.personne.create({
     data: {
@@ -32,8 +33,8 @@ export const createPersonne = async (req, res, next) => {
     },
   });
   res.status(200).json(personne);
-};
-export const updatePersonne = async (req, res, next) => {
+})
+export const updatePersonne = asyncHandler(async (req, res, next) => {
   const personne = await prisma.personne.update({
     where: {
       id: req.params.id,
@@ -43,7 +44,7 @@ export const updatePersonne = async (req, res, next) => {
     },
   });
   res.status(200).json(personne);
-};
+}); ;
 export const deletePersonne = async (req, res, next) => {
   const personne = await prisma.personne.delete({
     where: {

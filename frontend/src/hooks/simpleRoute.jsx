@@ -27,16 +27,16 @@ const simpleRoute = () => {
         active: pathname === '/',
       },
       {
-        label: 'Beneficiare',
-        icon: TbUsersGroup,
-        path: '/beneficiaire',
-        active: ['/beneficiaire', '/beneficiaire/personne'].includes(pathname),
-      },
-      {
         label: 'Menage',
         icon: ImHome,
         path: '/menage',
-        active: pathname === '/menage',
+        active: ['/menage', '/menage/personne'].includes(pathname),
+      },
+      {
+        label: 'Beneficiaire',
+        icon: TbUsersGroup,
+        path: '/beneficiaire',
+        active: pathname === '/beneficiaire',
       },
     ],
     [pathname]

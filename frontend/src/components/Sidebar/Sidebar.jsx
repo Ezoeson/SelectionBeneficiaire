@@ -85,7 +85,7 @@ const Sidebar = () => {
           animate={{ rotate: full ? 0 : 180 }}
           transition={{ duration: 0.5 }}
           onClick={toggleSidebar}
-          className='w-8 h-8 rounded-full bg-white md:flex justify-center hidden items-center md:absolute -right-4 z-50'
+          className='w-8 cursor-pointer h-8 rounded-full bg-white md:flex justify-center hidden items-center md:absolute -right-4 z-50'
         >
           <AiOutlineLeft className='text-slate-900 text-lg' />
         </motion.div>
@@ -173,7 +173,7 @@ const Sidebar = () => {
                     </span>
                     <div
                       onClick={toggleTheme}
-                      className='w-24 z-20 relative h-10 rounded-full bg-slate-200 dark:bg-slate-950 flex items-center space-x-2 px-3 '
+                      className='w-24 z-20 cursor-pointer relative h-10 rounded-full bg-slate-200 dark:bg-slate-950 flex items-center space-x-2 px-3 '
                     >
                       <div className='w-8 h-8 rounded-full flex items-center justify-center'>
                         <MdLightMode className='text-2xl text-yellow-500 dark:text-slate-200' />

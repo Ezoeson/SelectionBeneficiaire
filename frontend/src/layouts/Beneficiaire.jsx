@@ -4,7 +4,6 @@ import TableRow from '../components/Tables/TableRow';
 
 import { HiMiniTrash, HiMiniPencil } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
-import { FcDownload } from 'react-icons/fc';
 
 import {
   useGetBeneficiaireQuery,
@@ -16,8 +15,6 @@ import Modal from '../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { Dialog, Transition } from '@headlessui/react';
 import Message from '../components/Message/Message';
-import SlideOver from '../components/Modal/SlideOver';
-
 // import CSVLink from 'react-csv';
 
 import { RiSearchLine } from 'react-icons/ri';
@@ -41,10 +38,9 @@ const Beneficiaire = () => {
   const filteredBeneficiaires = data?.beneficiaire.filter((item) =>
     val === ''
       ? true
-      : item.nomBeneficiaire.toLowerCase().includes(val.toLowerCase())
+      : item?.fokontany?.nomFokontany.toLowerCase().includes(val.toLowerCase())
   );
   const [selectedBeneficiaires, setSelectedBeneficiaires] = useState([]);
-
 
   const handleToggleSelection = (beneficiaire) => {
     if (selectedBeneficiaires.includes(beneficiaire)) {
@@ -118,7 +114,7 @@ const Beneficiaire = () => {
               onClick={exportData}
             >
               <img src='csv.png' alt='' className='rounded w-10 h-10' />
-              <p className='dark:text-white text-slate-900' >Export</p>
+              <p className='dark:text-white text-slate-900'>Export</p>
             </CsvDownloader>
           </div>
 
@@ -163,9 +159,9 @@ const Beneficiaire = () => {
           {(!isLoading || !isFetching) && isSuccess ? (
             <>
               {filteredBeneficiaires?.length === 0 && (
-                <div className='flex items-center justify-center mt-12'>
+                <div className='flex items-center dark:text-white justify-center mt-12'>
                   <Message
-                    title='Aucun enqueteur trouvé '
+                    title='Aucun Beneficiaire trouvé '
                     icon={ExclamationTriangleIcon}
                   />
                 </div>
@@ -236,7 +232,6 @@ const Beneficiaire = () => {
                         alt=''
                         className='w-10 h-10 rounded-full object-cover'
                       />
-                    
                     </div>
                   )}
 

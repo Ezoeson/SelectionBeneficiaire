@@ -20,9 +20,10 @@ import Radio from './Radio';
 import { ClipLoader } from 'react-spinners';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import LoadingForm from '../../components/LoadingForm/LoadingForm';
 
 function Reponse() {
-  const { reponses } = useSelector((state) => state.reponse);
+ 
   const { userId } = useAuth();
   const { data: compte } = useGetCompteByClerkQuery(userId);
   console.log(compte?.enqueteur.id);
@@ -30,7 +31,7 @@ function Reponse() {
   const idPersonne = personneId.id;
   const serch_value = '%20';
 
-  const dispatch = useDispatch();
+  
 
   const [
     createReponse,
@@ -131,6 +132,7 @@ function Reponse() {
   return (
     <div className=' mt-4 border mx-4 p-8  shadow-xl rounded-md shadow-blue-700'>
       {isSuccess && <Confetti />}
+      {loadingClasse && <div>......</div> }
       <form
         action=''
         onSubmit={handleSubmit(onSubmit)}
