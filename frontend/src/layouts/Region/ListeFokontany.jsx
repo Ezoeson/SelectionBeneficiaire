@@ -53,11 +53,7 @@ const ListeFokontany = () => {
   const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const toggleAddModal = () => setAddModal(!addModal);
   const toggleUpdateModal = () => setUpdateModal(!addModal);
-  const {
-    data: enq,
-    isLoading: loadingEnqueteur,
-    isSuccess: successEnqueteur,
-  } = useGetEnqueteurSelectQuery();
+
 
   const {
     data: commune,

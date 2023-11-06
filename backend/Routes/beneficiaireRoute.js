@@ -8,7 +8,6 @@ import {
   deleteBeneficiaire,
   updateBeneficiaire,
   getNoteBeneficiaire,
-  deleteNote,
   getBeneficiaireNombrePersonne,
   personneNote,
   getNoteByPersonne,
@@ -29,6 +28,5 @@ router.delete('/:id', deleteBeneficiaire);
 
 router.put('/:id', updateBeneficiaire);
 router.get('/notes', getNoteBeneficiaire);
-router.delete('/notes/:id', deleteNote);
 
 export default router;

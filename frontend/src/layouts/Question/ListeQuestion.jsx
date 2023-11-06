@@ -54,10 +54,19 @@ const ListeQuestion = () => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
+  const [categorieId, setCategorieId] = useState('');
 
   const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const toggleAddModal = () => setAddModal(!addModal);
   const toggleUpdateModal = () => setUpdateModal(!addModal);
+  const {
+    data: Categories,
+    isLoading: loadingCategorie,
+    isSuccess: successCategorie,
+  } = useGetCategorieQuery();
+  const idCategorie = Categories && Categories[0]?.id;
+  console.log(idCategorie);
+  console.log(categorieId);
 
   useEffect(() => {
     if (value === '') {
@@ -73,6 +82,22 @@ const ListeQuestion = () => {
       <h2 className='text-xl font-semibold dark:text-white '>
         Liste de tous les Questions
       </h2>
+      <select
+        id='classe'
+        name='classe'
+        onChange={(e) => {
+          setCategorieId(e.target.value);
+        }}
+        className='block w-[230px] dark:bg-slate-900 dark:text-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+      >
+        {!loadingCategorie &&
+          successCategorie &&
+          Categories?.map((categeorie) => (
+            <option key={categeorie.id} value={categeorie.id}>
+              {categeorie.categorieName}
+            </option>
+          ))}
+      </select>
       <div className='flex items-center justify-between my-3'>
         <div className=' '>
           <input
@@ -110,7 +135,7 @@ const ListeQuestion = () => {
 
           {(!isLoading || !isFetching) && isSuccess ? (
             <>
-              {Question?.map((item) => (
+              {Question?.filter((item)=> categorieId === '' ? item.categorieId === idCategorie : item.categorieId === categorieId).map((item) => (
                 <TableRow
                   key={item.id}
                   col={'md:grid-cols-[2fr,1fr,1fr,max-content] items-center'}

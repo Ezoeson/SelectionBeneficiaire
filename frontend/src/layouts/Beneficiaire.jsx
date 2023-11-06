@@ -44,7 +44,7 @@ const Beneficiaire = () => {
       : item.nomBeneficiaire.toLowerCase().includes(val.toLowerCase())
   );
   const [selectedBeneficiaires, setSelectedBeneficiaires] = useState([]);
-  console.log(selectedBeneficiaires);
+
 
   const handleToggleSelection = (beneficiaire) => {
     if (selectedBeneficiaires.includes(beneficiaire)) {
@@ -118,7 +118,7 @@ const Beneficiaire = () => {
               onClick={exportData}
             >
               <img src='csv.png' alt='' className='rounded w-10 h-10' />
-              Export
+              <p className='dark:text-white text-slate-900' >Export</p>
             </CsvDownloader>
           </div>
 
@@ -132,7 +132,7 @@ const Beneficiaire = () => {
             />
           </div>
         </div>
-        
+
         {/* <div
           onClick={toggleAddModal}
           className='flex justify-center cursor-pointer rounded-md bg-gradient-to-r from-cyan-400 to-indigo-600 items-center px-2 md:w-max w-20'
@@ -236,7 +236,7 @@ const Beneficiaire = () => {
                         alt=''
                         className='w-10 h-10 rounded-full object-cover'
                       />
-                      {/* <span className=''>Personne</span> */}
+                    
                     </div>
                   )}
 

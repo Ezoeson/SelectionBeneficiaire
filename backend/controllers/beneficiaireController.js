@@ -1,10 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import asyncHandler from '../middleware/asyncHandler.js';
 
-export const getAllBeneficiaire = async (req, res, next) => {
+export const getAllBeneficiaire = asyncHandler(async (req, res, next) => {
   try {
     const page = Number(req.query.pageNumber) || 1;
-    const pageSize = 10; // Number of items per page
+    const pageSize = 1000000; // Number of items per page
     const offset = (page - 1) * pageSize;
 
     const beneficiaire = await prisma.beneficiaire.findMany({
@@ -45,8 +46,8 @@ export const getAllBeneficiaire = async (req, res, next) => {
       totalPage: beneficiaire.length,
     });
   } catch (error) {}
-};
-export const getBeneficiaireById = async (req, res, next) => {
+});
+export const getBeneficiaireById = asyncHandler(async (req, res, next) => {
   const beneficiaire = await prisma.beneficiaire.findUnique({
     where: {
       id: req.params.id,
@@ -57,7 +58,7 @@ export const getBeneficiaireById = async (req, res, next) => {
     },
   });
   res.status(200).json(beneficiaire);
-};
+});
 export const countBeneficiaire = async (req, res, next) => {
   const beneficiaire = await prisma.beneficiaire.count();
   res.status(200).json(beneficiaire);
@@ -65,67 +66,10 @@ export const countBeneficiaire = async (req, res, next) => {
 
 //
 
-// export const createBeneficiaireNote = async (req, res, next) => {
-//   const {beneficiaire, personne, reponses}=req.body
-//   const beneficiaires = await prisma.beneficiaire.create({
-//     data: {
-//       ...beneficiaire,
-//     },
-//   });
-
-//   if (!beneficiaires) {
-//     return console.log('BENEFICIAIRE NON CREER');
-//   }
-
-//   const idBeneficiaire = beneficiaires.id;
-
-//   const personnes = await prisma.personne.create({
-//     data: {
-//       ...personne,
-//       benefificiareId: idBeneficiaire,
-//     },
-//   });
-
-//   if (!personnes) {
-//     return console.log('PERSONNE NON CREER');
-//   }
-
-//   const tab = [];
-
-//   let obj = {};
-//   reponses.forEach((item) => {
-//     obj.questionId = item.questionId;
-//     obj.reponse = item.reponse;
-//     obj.beneficiaireId = idBeneficiaire;
-//     tab.push(obj);
-//     obj = {};
-//   });
-
-//   const reponseMany = await prisma.reponse.createMany({
-//     data: [...tab],
-
-//     skipDuplicates: true,
-//   });
-
-//   if (!reponseMany) {
-//     return console.log('REPONSE NON CREER');
-//   }
-//     calculateBeneficiaryScore(idBeneficiaire,res);
-
-// };
-
 export const getNote = async (req, res, next) => {
   const note = await prisma.note.findMany({
     include: {
       beneficiaire: true,
-    },
-  });
-  res.status(200).json(note);
-};
-export const deleteNote = async (req, res, next) => {
-  const note = await prisma.note.delete({
-    where: {
-      id: req.params.id,
     },
   });
   res.status(200).json(note);
@@ -258,45 +202,3 @@ export const personneNote = async (req, res, next) => {
   });
   res.status(200).json({ Note, nomPersonne });
 };
-
-// export const nombreBeneficiaireByJourBysemaine = async (req, res, next) => {
-//   const beneficiaire = await prisma.beneficiaire.findMany();
-//   const nbreBeneficiaire = [0, 0, 0, 0, 0, 0, 0];
-//   const jour = ['dimanche', 'lundi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-//   beneficiaire.forEach((record) => {
-//     const day = new Date(record.createdAt).getDay();
-//     nbreBeneficiaire[day] += 1;
-//   });
-//   res.status(200).json({ nbreBeneficiaire, jour });
-// };
-// export const nombreBeneficiaireByJourBysemaine = async (req, res, next) => {
-//   const beneficiaire = await prisma.beneficiaire.findMany();
-//   const jour = [
-//     'dimanche',
-//     'lundi',
-//     'mardi',
-//     'mercredi',
-//     'jeudi',
-//     'vendredi',
-//     'samedi',
-//   ];
-//   const nbreBeneficiaire = {};
-
-//   beneficiaire.forEach((record) => {
-//     const createdAt = new Date(record.createdAt);
-//     const dayOfWeek = createdAt.getDay();
-//     const dateString = createdAt.toISOString().split('T')[0]; // Extract the date in 'YYYY-MM-DD' format.
-
-//     if (!nbreBeneficiaire[jour[dayOfWeek]]) {
-//       nbreBeneficiaire[jour[dayOfWeek]] = {};
-//     }
-
-//     if (!nbreBeneficiaire[jour[dayOfWeek]][dateString]) {
-//       nbreBeneficiaire[jour[dayOfWeek]][dateString] = 0;
-//     }
-
-//     nbreBeneficiaire[jour[dayOfWeek]][dateString]++;
-//   });
-
-//   res.status(200).json({ nbreBeneficiaire });
-// };

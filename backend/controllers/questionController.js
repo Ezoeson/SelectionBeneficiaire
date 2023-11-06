@@ -3,12 +3,12 @@ import asyncHandler from '../middleware/asyncHandler.js';
 
 const prisma = new PrismaClient();
 
-export const createQuestion = async (req, res, next) => {
+export const createQuestion = asyncHandler(async (req, res, next) => {
   const Question = await prisma.question.create({
     data: { ...req.body },
   });
   res.status(200).json(Question);
-};
+});
 export const getAllQuestion = asyncHandler(async (req, res, next) => {
   const { search_value } = req.params;
   if (search_value === '%20' || search_value === ' ') {
@@ -32,7 +32,7 @@ export const getAllQuestion = asyncHandler(async (req, res, next) => {
   res.status(200).json(allQuestion);
 });
 
-export const updateQuestion = async (req, res, next) => {
+export const updateQuestion = asyncHandler(async (req, res, next) => {
   const updateQuestion = await prisma.question.update({
     where: {
       id: req.params.id,
@@ -40,8 +40,8 @@ export const updateQuestion = async (req, res, next) => {
     data: { ...req.body },
   });
   res.status(200).json(updateQuestion);
-};
-export const deleteQuestion = async (req, res, next) => {
+});
+export const deleteQuestion = asyncHandler(async (req, res, next) => {
   try {
     const deleteQuestion = await prisma.question.delete({
       where: {
@@ -52,8 +52,8 @@ export const deleteQuestion = async (req, res, next) => {
   } catch (error) {
     res.status(400).json(error);
   }
-};
-export const getOneQuestion = async (req, res, next) => {
+});
+export const getOneQuestion = asyncHandler(async (req, res, next) => {
   try {
     const oneQuestion = await prisma.question.findUnique({
       where: {
@@ -64,4 +64,4 @@ export const getOneQuestion = async (req, res, next) => {
   } catch (error) {
     res.status(400).json(error);
   }
-};
+});

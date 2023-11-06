@@ -28,7 +28,10 @@ import {
   FcCustomerSupport,
   FcBusinesswoman,
 } from 'react-icons/fc';
-import { useGetUserDasboardQuery,useGetDasboardQuery } from '../../redux/slices/dashboardApiSlice';
+import {
+  useGetUserDasboardQuery,
+  useGetDasboardQuery,
+} from '../../redux/slices/dashboardApiSlice';
 import { FaUserTie } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { ImUsers } from 'react-icons/im';
@@ -38,16 +41,15 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function UserDashboard() {
-
   const icons = [AiOutlineForm, AiOutlineForm, AiOutlineForm];
   const { userId } = useAuth();
   const { data: compte } = useGetCompteByClerkQuery(userId);
-   const {
-     data: stats,
-     isLoading: loading,
-     isSuccess: succes,
-   } = useGetDasboardQuery();
-   console.log(stats);
+  const {
+    data: stats,
+    isLoading: loading,
+    isSuccess: succes,
+  } = useGetDasboardQuery();
+  console.log(stats);
 
   const enqueteurId = compte?.enqueteur.id;
   console.log(enqueteurId);
@@ -85,6 +87,7 @@ function UserDashboard() {
               data={stat.data}
             />
           ))}
+     
         {loadingDashboard && (
           <div className='flex space-x-3'>
             <div className='mt-2 py-5'>

@@ -4,6 +4,7 @@ import TableRow from '../../components/Tables/TableRow';
 
 import { HiMiniTrash, HiMiniPencil } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
+import CsvDownloader from 'react-csv-downloader';
 
 import {
   useGetBeneficiaireQuery,
@@ -57,6 +58,63 @@ const Menage = () => {
       ? true
       : item.nomBeneficiaire.toLowerCase().includes(val.toLowerCase())
   );
+  const [selectedBeneficiaires, setSelectedBeneficiaires] = useState([]);
+
+  const handleToggleSelection = (beneficiaire) => {
+    if (selectedBeneficiaires.includes(beneficiaire)) {
+      setSelectedBeneficiaires(
+        selectedBeneficiaires.filter((b) => b !== beneficiaire)
+      );
+    } else {
+      setSelectedBeneficiaires([...selectedBeneficiaires, beneficiaire]);
+    }
+  };
+
+  const formattedData = selectedBeneficiaires.map((beneficiaire) => {
+    const personneData = beneficiaire.personne.map((personne) => [
+      personne.nom,
+      personne.prenom,
+      personne.cin,
+      personne.age,
+      personne.type,
+    ]);
+
+    return [
+      beneficiaire.fokontany.codeFokontany,
+      beneficiaire.fokontany.nomFokontany,
+      beneficiaire.nomBeneficiaire,
+      beneficiaire.note.value,
+      ...personneData.flat(), // Use flat() to flatten the personneData array
+    ];
+  });
+  const columns = [
+    { id: 'codeFokontany', displayName: 'Code fokontany' },
+    { id: 'nomFokontany', displayName: 'Fokontany' },
+    { id: 'beneficiaire', displayName: 'Beneficiaire' },
+    { id: 'note', displayName: 'Note' },
+    { id: 'nom', displayName: 'Nom' },
+    { id: 'prenom', displayName: 'Prenom' },
+    { id: 'cin', displayName: 'Cin' },
+    { id: 'age', displayName: 'Age' },
+    {
+      id: 'type',
+      displayName: 'Type',
+      transform: (value) => value.join(', '), // join array values with a comma
+    },
+  ];
+
+  const [exportSuccess, setExportSuccess] = useState(false);
+  const exportData = () => {
+    // Code d'exportation de données avec CsvDownloader ici
+
+    // Réinitialisez le tableau des bénéficiaires sélectionnés seulement si l'exportation réussit
+    if (exportSucceeded) {
+      setSelectedBeneficiaires([]);
+    }
+  };
+
+  // Variable d'état pour indiquer si l'exportation a réussi
+  const [exportSucceeded, setExportSucceeded] = useState(false);
 
   return (
     <div className='p-4'>
@@ -64,6 +122,20 @@ const Menage = () => {
         Liste de tous les Beneficiaires
       </h2>
       <div className='flex items-center justify-between my-3'>
+        <div className=' hover-bg-blue-700  w-[100px] text-white font-bold py-2 px-4  rounded'>
+          <CsvDownloader
+            columns={columns}
+            filename={'beneficiaires.csv'}
+            //
+            datas={formattedData}
+            meta='true'
+            separator=';'
+            onClick={exportData}
+          >
+            <img src='csv.png' alt='' className='rounded w-10 h-10' />
+            <p className='dark:text-white text-slate-900'>Export</p>
+          </CsvDownloader>
+        </div>
         <div className='border border-slate-700 dark:border-slate-500 md:w-80 w-40 rounded-md flex  px-3 items-center space-x-2  dark:text-white'>
           <RiSearchLine size={'20px'} />
           <input
@@ -73,15 +145,7 @@ const Menage = () => {
             className='outline-none bg-transparent border-none border-b-2 border-gray-400 focus:border-white focus:ring-0 '
           />
         </div>
-        <div
-          onClick={toggleAddModal}
-          className='flex justify-center cursor-pointer rounded-md bg-gradient-to-r from-cyan-400 to-indigo-600 items-center px-2 md:w-max w-20'
-        >
-          <FiPlus size={'30px'} className='text-white' />
-          <button className=' text-white py-2 px-4   hidden md:block'>
-            Ajout beneficiaire
-          </button>
-        </div>
+       
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[1fr,2fr,1fr,2fr,max-content]'>
@@ -105,7 +169,7 @@ const Menage = () => {
               {filteredBeneficiaires?.length === 0 && (
                 <div className='flex items-center justify-center mt-12'>
                   <Message
-                    title='Aucun enqueteur trouvé '
+                    title='Aucun menage trouvé '
                     icon={ExclamationTriangleIcon}
                   />
                 </div>
@@ -123,6 +187,13 @@ const Menage = () => {
                     }
                   >
                     <div className='flex items-center space-x-2'>
+                      <input
+                        className='cursor-pointer'
+                        type='checkbox'
+                        onChange={() => handleToggleSelection(item)}
+                        checked={selectedBeneficiaires.includes(item)}
+                        disabled={exportSuccess}
+                      />
                       <span className='md:hidden font-bold'>Nom :</span>{' '}
                       <span>{item.nomBeneficiaire}</span>
                     </div>

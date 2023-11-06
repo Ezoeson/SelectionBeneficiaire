@@ -186,25 +186,24 @@ export const nombreBeneficiaire = async (req, res, next) => {
 };
 
 export const userDashboard = async (req, res, next) => {
-  const countFormulaire = await prisma.formulaire.count()
-  const countCategorie = await prisma.categorieQuestion.count()
-  const countQuestion = await prisma.question.count()
+  const countFormulaire = await prisma.formulaire.count();
+  const countCategorie = await prisma.categorieQuestion.count();
+  const countQuestion = await prisma.question.count();
 
- const statistic = [
-   {
-     label: 'Nombre des Formulaires',
-     data: countFormulaire,
-   },
-   {
-     label: 'Nombre des Categories',
-     data: countCategorie,
-   },
-   {
-     label: 'Nombre des Questions',
-     data: countQuestion,
-   },
-  
- ];
+  const statistic = [
+    {
+      label: 'Nombre des Formulaires',
+      data: countFormulaire,
+    },
+    {
+      label: 'Nombre des Categories',
+      data: countCategorie,
+    },
+    {
+      label: 'Nombre des Questions',
+      data: countQuestion,
+    },
+  ];
 
   const nombreBeneficiaire = await prisma.fokontany.findMany({
     where: {
@@ -224,42 +223,7 @@ export const userDashboard = async (req, res, next) => {
 
   const total = nombre.reduce((acc, current) => acc + current, 0);
 
-  console.log({ total,statistic });
   res.status(200).json({ total, statistic });
-  // const user = await prisma.enqueteur.findUnique({
-  //   where: {
-  //     id: req.params.id,
-  //   },
-  //   select: {
-  //     fokontany: {
-  //       select: {
-
-  //         _count: {
-  //           select: {
-  //             beneficiaire: true,
-
-  //           },
-  //         },
-  //         beneficiaire:{
-  //           select:{
-  //             _count:{
-  //               select:{
-  //                 personne:true
-  //               }
-  //             }
-  //           }
-  //         }
-  //       },
-  //     },
-  //   },
-  // });
-  // const nombreBe = user.fokontany.map((item)=> (item._count.beneficiaire))
-  // const nombrePer = user.fokontany.map((item)=>(
-  //   item.beneficiaire.map((item)=>(
-  //     item._count.personne
-  //   ))
-  // ))
-  // res.status(200).json({ nombreBe,nombrePer });
 };
 
 export const getBeneficiaireCountByDate = async (req, res, next) => {
