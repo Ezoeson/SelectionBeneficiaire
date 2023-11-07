@@ -48,18 +48,18 @@ const Slide = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src='reponse.jpg'
+            src='reponsess.jpg'
+            alt=''
+            className='w-full h-full object-cover'
+          />{' '}
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src='reponses.jpg'
             alt=''
             className='w-full h-full object-cover '
           />
         </SwiperSlide>
-        {/* <SwiperSlide>
-          <img
-            src='ampelajpg.jpg'
-            alt=''
-            className='w-full h-full object-cover'
-          />{' '}
-        </SwiperSlide> */}
       </Swiper>
     </>
   );
