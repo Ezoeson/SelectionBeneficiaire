@@ -379,7 +379,7 @@ const AddModal = ({ open, setOpen, refetch }) => {
                 id='form'
                 name='form'
                 {...register('type')}
-                className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                className='block w-full rounded-md border-0 py-1.5 dark:bg-slate-900 dark:text-slate-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
               >
                 <option value='BOOLEAN'>BOOLEAN</option>
                 <option value='INPUT'>INPUT</option>

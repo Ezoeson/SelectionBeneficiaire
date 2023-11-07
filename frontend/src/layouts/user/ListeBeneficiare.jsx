@@ -441,25 +441,24 @@ const UpdateModal = ({ open, setOpen, refetch, id, fokontanyId,enqueteurId }) =>
           <h1 className='text-center font-bold text-xl'>
             Modifier l'adresse Beneficiaire
           </h1>
-          <form
-           onSubmit={handleSubmit(onSubmit)}
-            className='px-4'
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className='px-4'>
             <div className='mt-2 flex items-center space-x-3'>
               <label htmlFor=''>Fokontany </label>
               <select
                 id='fokontany'
                 name='fokontany'
                 {...register('fokontanyId')}
-                className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                className='block w-full rounded-md border-0 py-1.5 dark:bg-slate-900 dark:text-slate-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
               >
                 {!loadingFokontany &&
                   successFokontany &&
-                  fokontany?.filter((item) => item.enqueteurId === enqueteurId).map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.nomFokontany}
-                    </option>
-                  ))}
+                  fokontany
+                    ?.filter((item) => item.enqueteurId === enqueteurId)
+                    .map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.nomFokontany}
+                      </option>
+                    ))}
               </select>
             </div>
             <button className='mt-5 cursor:pointer py-2 px-8 bg-indigo-500 rounded text-white '>
