@@ -59,7 +59,6 @@ const Login = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, ease: 'easeInOut', duration: 0.8 }}
           className=' h-full rounded-l-lg col-[1] md:block hidden'
-        
         >
           <Slide />
         </motion.div>
@@ -89,8 +88,11 @@ const Login = () => {
               className='w-[80px] h-10  md:w-[200px] md:h-[100px]'
             />
           </div>
-        
-          <form onSubmit={handleSubmit(onSubmit)} className=' mt-10 mx-10 p-4 relative '>
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className=' mt-10 mx-10 p-4 relative '
+          >
             <div className='sm:col-span-3'>
               <label className='block text-sm font-medium leading-6 text-indigo-700'>
                 Pseudo ou Email
@@ -123,20 +125,20 @@ const Login = () => {
 
             <div className='absolute right-1'>
               <Link to={'/forgotCode'}>
-                <p className='text-indigo-600  dark:text-slate-400 '>
+                <p className='text-indigo-600  dark:text-indigo-600 '>
                   Mot de passe oublie?
                 </p>
               </Link>
             </div>
 
-            <button className='bg-indigo-700 mt-8 text-white w-full  px-5 py-2 rounded-lg'>
+            <button className='bg-gradient-to-r from-blue-700 via-purple-500 to-rose-600 mt-8 text-white w-full  px-5 py-2 rounded-lg'>
               {isLoading ? 'connexion...' : 'se connecter'}
             </button>
           </form>
-          <div className='text-indigo-500 ml-10 py-1  text-center text-sm  dark:text-slate-400'>
+          <div className='text-slate-900 ml-10 py-1  text-center text-sm  dark:text-slate-900'>
             Vous n'avez pas du compte?{' '}
             <Link to={'/register'}>
-              <span className='text-indigo-900 dark:text-blue-500 border-b border-b-slate-900'>
+              <span className='text-indigo-900 dark:text-blue-500 border-b border-b-blue-900'>
                 s'inscrire
               </span>{' '}
             </Link>

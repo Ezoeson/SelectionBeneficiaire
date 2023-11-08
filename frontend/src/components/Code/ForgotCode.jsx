@@ -107,7 +107,7 @@ const ForgotCode = () => {
                   </div>
                 </div>
 
-                <button className='bg-indigo-700 mt-4  text-white w-full  px-5 py-2 rounded-lg'>
+                <button className='bg-gradient-to-r from-blue-700 via-purple-500 to-rose-600 mt-4  text-white w-full  px-5 py-2 rounded-lg'>
                   Envoyer
                 </button>
               </>
@@ -139,7 +139,7 @@ const ForgotCode = () => {
                   </div>
                 </div>
 
-                <button className='bg-indigo-700 mt-4  text-white w-full  px-5 py-2 rounded-lg'>
+                <button className='bg-gradient-to-r from-blue-700 via-purple-500 to-rose-600 mt-4  text-white w-full  px-5 py-2 rounded-lg'>
                   Reinitialiser
                 </button>
               </>
