@@ -85,9 +85,9 @@ const Sidebar = () => {
           animate={{ rotate: full ? 0 : 180 }}
           transition={{ duration: 0.5 }}
           onClick={toggleSidebar}
-          className='w-8 cursor-pointer h-8 rounded-full bg-white md:flex justify-center hidden items-center md:absolute -right-4 z-50'
+          className='w-8 cursor-pointer h-8 rounded-full bg-white dark:bg-slate-900 md:flex justify-center hidden items-center md:absolute -right-4 z-50'
         >
-          <AiOutlineLeft className='text-slate-900 text-lg' />
+          <AiOutlineLeft className='text-slate-900 dark:text-slate-100 text-lg' />
         </motion.div>
       </div>
       <div

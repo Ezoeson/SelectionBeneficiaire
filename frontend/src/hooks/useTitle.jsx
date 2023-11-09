@@ -13,16 +13,16 @@ const useTitle = () => {
         setTitle('Dashboard');
         break;
       case '/endroit':
-        setTitle('Endroit');
+        setTitle('Zone');
         break;
       case '/endroit/district':
-        setTitle('Endroit');
+        setTitle('Zone');
         break;
       case '/endroit/commune':
-        setTitle('Endroit');
+        setTitle('Zone');
         break;
       case '/endroit/fokontany':
-        setTitle('Endroit');
+        setTitle('Zone');
         break;
 
       case '/enqueteur':

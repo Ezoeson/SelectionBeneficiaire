@@ -79,7 +79,7 @@ const Dashboard = () => {
           </div>
         )}
       </div>
-      <div className='grid  md:grid-cols-2 grid-rows-2 px-8 mt-4 max-w[1280px]   gap-y-4 gap-4 md:gap-x-10 mx-auto '>
+      <div className='md:grid  hidden md:grid-cols-2 grid-rows-2 px-8 mt-4 max-w[1280px]   gap-y-4 gap-4 md:gap-x-10 mx-auto '>
         <div className='h-[450px]  bg-slate-100 dark:bg-slate-900 rounded shadow-md shadow-blue-800'>
           <p className='p-3 font-semibold dark:text-slate-300'>
             Les 10 meilleurs notes de Beneficiaire

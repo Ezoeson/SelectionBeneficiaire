@@ -27,7 +27,7 @@ const useRoutes = () => {
         active: pathname === '/',
       },
       {
-        label: 'Endroit',
+        label: 'Zones',
         icon: ImHome,
         path: '/endroit',
         active: ['/endroit', '/endroit/district', '/endroit/commune','endroit/fokontany'].includes(
@@ -36,7 +36,7 @@ const useRoutes = () => {
       },
 
       {
-        label: 'Enqueteur',
+        label: 'Enqueteurs',
         icon: FaUserTie,
         path: '/enqueteur',
         active: pathname === '/enqueteur',
