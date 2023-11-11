@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+import asyncHandler from '../middleware/asyncHandler.js';
 
-export const getAllreponse = async (req, res, next) => {
+export const getAllreponse = asyncHandler(async (req, res, next) => {
   const reponses = await prisma.reponse.findMany({
     include: {
       question: true,
@@ -14,8 +15,8 @@ export const getAllreponse = async (req, res, next) => {
     },
   });
   res.status(200).json(reponses);
-};
-export const updateReponse = async (req, res, next) => {
+});
+export const updateReponse = asyncHandler(async (req, res, next) => {
   const { reponses } = req.body;
   const updateReponse = await prisma.reponse.update({
     where: {
@@ -24,9 +25,9 @@ export const updateReponse = async (req, res, next) => {
     data: { reponse: reponses },
   });
   res.status(200).json(updateReponse);
-};
+});
 
-export const createManyreponse = async (req, res, next) => {
+export const createManyreponse = asyncHandler(async (req, res, next) => {
   const { reponses } = req.body;
   const personneId = reponses[0].personneId; // Prenez le personneId du premier élément, car il devrait être le même pour tous
   const existingResponses = await prisma.reponse.findMany({
@@ -79,7 +80,7 @@ export const createManyreponse = async (req, res, next) => {
 
   // Mettez à jour la note du bénéficiaire dans la base de données
   await updateBeneficiaryScore(idPersonne, totalScore);
-};
+});
 
 // Fonction pour calculer la note du bénéficiaire en fonction des réponses
 // Fonction pour calculer la note du bénéficiaire en fonction des réponses
@@ -154,7 +155,7 @@ const updateBeneficiaryScore = async (personneId, totalScore) => {
   });
 };
 
-export const createMnyreponse = async (req, res, next) => {
+export const createMnyreponse = asyncHandler(async (req, res, next) => {
   try {
     const { reponses } = req.body;
 
@@ -245,4 +246,4 @@ export const createMnyreponse = async (req, res, next) => {
     console.error(error);
     res.status(500).json({ error: 'Une erreur s est produite.' });
   }
-};
+});

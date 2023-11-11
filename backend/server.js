@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import cookieParser from 'cookie-parser';
 import Question from './Routes/questionRoute.js';
 import CategorieQuestion from './Routes/categorieQuestionRoute.js';
 import Regions from './Routes/regionRoute.js';
@@ -22,6 +23,8 @@ const PORT = 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 app.use('/question', Question);
 app.use('/categorie', CategorieQuestion);

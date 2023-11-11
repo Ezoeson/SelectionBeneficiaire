@@ -6,12 +6,15 @@ import {
   getBeneficiaireCountByDate
 } from '../controllers/dashboardController.js';
 
+
+import { protect, admin } from '../middleware/authMiddleware.js';
+
 const router = new Router();
 router.get('/countBef', nombreBeneficiaireByJourBysemaine);
-router.get('/', nombreBeneficiaire);
-router.get('/date', getBeneficiaireCountByDate);
+router.get('/',protect, nombreBeneficiaire);
+router.get('/date',protect, getBeneficiaireCountByDate);
 
-router.get('/user/:id', userDashboard);
+router.get('/user/:id',protect, userDashboard);
 // router.get('/personne', personneNote);
 
 export default router;

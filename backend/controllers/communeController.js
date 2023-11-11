@@ -1,7 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const createcommune = async (req, res, next) => {
+import asyncHandler from '../middleware/asyncHandler.js';
+
+export const createcommune = asyncHandler(async (req, res, next) => {
   try {
     const commune = await prisma.commune.create({
       data: { ...req.body },
@@ -10,7 +12,7 @@ export const createcommune = async (req, res, next) => {
   } catch (error) {
     res.status(400).json(error);
   }
-};
+});
 
 export const getCommuneChart = async (req, res, next) => {
   try {
@@ -57,16 +59,19 @@ export const getCommuneChart = async (req, res, next) => {
   }
 };
 
-export const getAllcommune = async (req, res, next) => {
+export const getAllcommune = asyncHandler(async (req, res, next) => {
   try {
     const page = Number(req.query.pageNumber) || 1;
-    const pageSize = 20; // Number of items per page
+    const pageSize = 2000; // Number of items per page
     const offset = (page - 1) * pageSize;
     const commune = await prisma.commune.findMany({
       skip: offset,
       take: pageSize,
       include: {
         district: true,
+      },
+      orderBy: {
+        nomCommune: 'asc', // 'asc' pour trier par ordre croissant, 'desc' pour décroissant
       },
     });
     // Count total number of products (for pagination)
@@ -85,8 +90,8 @@ export const getAllcommune = async (req, res, next) => {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
-};
-export const getOnecommune = async (req, res, next) => {
+});
+export const getOnecommune = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const commune = await prisma.commune.findUnique({
     where: {
@@ -94,8 +99,8 @@ export const getOnecommune = async (req, res, next) => {
     },
   });
   res.status(200).json(commune);
-};
-export const getcommuneBydistrict = async (req, res, next) => {
+});
+export const getcommuneBydistrict = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const commune = await prisma.commune.findMany({
     where: {
@@ -103,9 +108,9 @@ export const getcommuneBydistrict = async (req, res, next) => {
     },
   });
   res.status(200).json(commune);
-};
+});
 
-export const updatecommune = async (req, res, next) => {
+export const updatecommune = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
 
   try {
@@ -121,8 +126,8 @@ export const updatecommune = async (req, res, next) => {
   } catch (error) {
     res.status(400).json(error);
   }
-};
-export const deletecommune = async (req, res, next) => {
+});
+export const deletecommune = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const commune = await prisma.commune.delete({
     where: {
@@ -130,4 +135,4 @@ export const deletecommune = async (req, res, next) => {
     },
   });
   res.status(200).json(commune);
-};
+});

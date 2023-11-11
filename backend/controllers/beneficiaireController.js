@@ -6,9 +6,7 @@ export const getAllBeneficiaire = asyncHandler(async (req, res, next) => {
   try {
     const page = Number(req.query.pageNumber) || 1;
 
-
     const beneficiaire = await prisma.beneficiaire.findMany({
-  
       orderBy: {
         note: {
           value: 'desc', // Triez par la valeur de la note en ordre décroissant
@@ -39,12 +37,15 @@ export const getAllBeneficiaire = asyncHandler(async (req, res, next) => {
     });
     res.status(200).json({
       beneficiaire,
-      
     });
   } catch (error) {
-    res.status(400).json(error)
+    res.status(400).json(error);
   }
 });
+export const  countBeneficiaire = asyncHandler(async(req,res,next)=>{
+  const count = await prisma.beneficiaire.count()
+  res.status(200).json(count)
+})
 export const getBeneficiaireById = asyncHandler(async (req, res, next) => {
   const beneficiaire = await prisma.beneficiaire.findUnique({
     where: {
@@ -57,24 +58,19 @@ export const getBeneficiaireById = asyncHandler(async (req, res, next) => {
   });
   res.status(200).json(beneficiaire);
 });
-export const countBeneficiaire = async (req, res, next) => {
-  const beneficiaire = await prisma.beneficiaire.count();
-  res.status(200).json(beneficiaire);
-};
 
 //
 
-export const getNote = async (req, res, next) => {
+export const getNote =  asyncHandler(async (req, res, next) => {
   const note = await prisma.note.findMany({
     include: {
       beneficiaire: true,
     },
   });
   res.status(200).json(note);
-};
-
+}) 
 let dernierChiffre = 0; // Initialiser le dernier chiffre
-export const createBeneficiaire = async (req, res, next) => {
+export const createBeneficiaire = asyncHandler(async (req, res, next) => {
   dernierChiffre++;
 
   const nom = `BNFC numero: ${dernierChiffre} ${new Date().toLocaleDateString()} `;
@@ -83,8 +79,8 @@ export const createBeneficiaire = async (req, res, next) => {
     data: { ...req.body, nomBeneficiaire: nom },
   });
   res.status(200).json(beneficiaires);
-};
-export const updateBeneficiaire = async (req, res, next) => {
+});
+export const updateBeneficiaire = asyncHandler(async (req, res, next) => {
   const beneficiaires = await prisma.beneficiaire.update({
     where: {
       id: req.params.id,
@@ -92,51 +88,53 @@ export const updateBeneficiaire = async (req, res, next) => {
     data: { ...req.body },
   });
   res.status(200).json(beneficiaires);
-};
-export const deleteBeneficiaire = async (req, res, next) => {
+});
+export const deleteBeneficiaire = asyncHandler(async (req, res, next) => {
   const beneficiaires = await prisma.beneficiaire.delete({
     where: {
       id: req.params.id,
     },
   });
   res.status(200).json(beneficiaires);
-};
-export const geBeneficiaireById = async (req, res, next) => {
+});
+export const geBeneficiaireById = asyncHandler(async (req, res, next) => {
   const beneficiaires = await prisma.beneficiaire.findUnique({
     where: {
       id: req.params.id,
     },
   });
   res.status(200).json(beneficiaires);
-};
-export const getNoteBeneficiaire = async (req, res, next) => {
+});
+export const getNoteBeneficiaire = asyncHandler(async (req, res, next) => {
   const beneficiaires = await prisma.beneficiaire.findMany({});
   res.status(200).json(beneficiaires);
-};
-export const getBeneficiaireNombrePersonne = async (req, res, next) => {
-  const beneficiaire = await prisma.beneficiaire.findMany({
-    select: {
-      nomBeneficiaire: true,
-      _count: {
-        select: {
-          personne: true,
+});
+export const getBeneficiaireNombrePersonne = asyncHandler(
+  async (req, res, next) => {
+    const beneficiaire = await prisma.beneficiaire.findMany({
+      select: {
+        nomBeneficiaire: true,
+        _count: {
+          select: {
+            personne: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  const nomBeneficiaire = [];
-  const nombrePersonne = [];
-  beneficiaire.forEach((beneficiaire) => {
-    nombrePersonne.push(beneficiaire._count.personne);
-    nomBeneficiaire.push(beneficiaire.nomBeneficiaire);
-  });
-  res.status(200).json({
-    nomBeneficiaire,
-    nombrePersonne,
-  });
-};
-export const getNoteByPersonne = async (req, res, next) => {
+    const nomBeneficiaire = [];
+    const nombrePersonne = [];
+    beneficiaire.forEach((beneficiaire) => {
+      nombrePersonne.push(beneficiaire._count.personne);
+      nomBeneficiaire.push(beneficiaire.nomBeneficiaire);
+    });
+    res.status(200).json({
+      nomBeneficiaire,
+      nombrePersonne,
+    });
+  }
+);
+export const getNoteByPersonne = asyncHandler(async (req, res, next) => {
   const beneficiaire = await prisma.beneficiaire.findMany({
     select: {
       nomBeneficiaire: true,
@@ -170,8 +168,8 @@ export const getNoteByPersonne = async (req, res, next) => {
   // const Note = beneficiaire.map((beneficiaire) => beneficiaire.note.value);
 
   res.status(200).json({ nomPersonne, Note });
-};
-export const personneNote = async (req, res, next) => {
+});
+export const personneNote = asyncHandler(async (req, res, next) => {
   const personne = await prisma.personne.findMany({
     where: {
       type: 'RECEPTEUR',
@@ -199,4 +197,4 @@ export const personneNote = async (req, res, next) => {
     }
   });
   res.status(200).json({ Note, nomPersonne });
-};
+});

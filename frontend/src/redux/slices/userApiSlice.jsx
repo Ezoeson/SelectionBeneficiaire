@@ -16,6 +16,14 @@ export const userSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: '/api/enqueteur/compte/login',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+  
     countEnqueteur: builder.query({
       query: () => ({
         url: '/api/enqueteur/count',
@@ -24,4 +32,4 @@ export const userSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCheckcodeMutation, useCreateAccountMutation, useCountEnqueteurQuery } = userSlice;
+export const { useCheckcodeMutation, useCreateAccountMutation, useCountEnqueteurQuery,useLoginMutation } = userSlice;

@@ -9,15 +9,23 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { clsx } from 'clsx';
+import { useLoginMutation } from '../../redux/slices/userApiSlice';
 
 const Login = () => {
+  const [login, { isLoading: loginLoading, isSuccess, isError }] =
+    useLoginMutation();
   const { register, handleSubmit } = useForm();
   const { signIn, isLoaded, setActive } = useSignIn();
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (data) => {
     setIsLoading(true);
-    
-
+    try {
+      const res = await login({
+        ...data,
+      }).unwrap();
+    } catch (error) {
+      toast.error(error);
+    }
     try {
       const result = await signIn.create({
         identifier: data.pseudo,
@@ -132,7 +140,7 @@ const Login = () => {
             </div>
 
             <button className='bg-gradient-to-r from-blue-700 via-purple-500 to-rose-600 mt-8 text-white w-full  px-5 py-2 rounded-lg'>
-              {isLoading ? 'connexion...' : 'se connecter'}
+              {loginLoading ? 'connexion...' : 'se connecter'}
             </button>
           </form>
           <div className='text-slate-900 ml-10 py-1  text-center text-sm  dark:text-slate-900'>

@@ -17,11 +17,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { store } from './redux/store.jsx';
 import { Provider } from 'react-redux';
+import {ErrorBoundary} from 'react-error-boundary'
+import ErrorFallBack from './components/Error/ErrorFallBack.jsx';
+
 
 const clerkFrontendApi = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
+    <ErrorBoundary FallbackComponent={ErrorFallBack} >
     <SidebarContextProvider>
       <BrowserRouter>
         <ToastContainer />
@@ -30,5 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </ClerkProvider>
       </BrowserRouter>
     </SidebarContextProvider>
+
+    </ErrorBoundary>
   </Provider>
 );

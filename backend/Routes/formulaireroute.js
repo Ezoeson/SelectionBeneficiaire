@@ -8,10 +8,12 @@ import {
 } from '../controllers/formulaireController.js';
 const router = new Router();
 
-router.post('/', createformulaire);
-router.get('/', getFormulaire);
-router.put('/:id', updateFormulaire);
-router.delete('/:id', deleteFormulaire);
-router.get('/:id', getOneFormulaire);
+import { protect, admin } from '../middleware/authMiddleware.js';
+
+router.post('/',protect,admin, createformulaire);
+router.get('/',protect, getFormulaire);
+router.put('/:id',protect,admin, updateFormulaire);
+router.delete('/:id',protect,admin, deleteFormulaire);
+router.get('/:id',protect,admin, getOneFormulaire);
 
 export default router;

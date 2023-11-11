@@ -44,7 +44,16 @@ const Dashboard = () => {
   const { data: commune, isSuccess } = useGetCommuneChartQuery();
   
 
-  const icons = [ImHome, FiUsers, FaUserTie, AiOutlineForm];
+  const icons = [
+    ImHome,
+    ImHome,
+    ImHome,
+    FiUsers,
+    FaUserTie,
+    AiOutlineForm,
+    AiOutlineForm,
+    AiOutlineForm,
+  ];
  
   const tab = [1, 2, 3, 4];
   return (
