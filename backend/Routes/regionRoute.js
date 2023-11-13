@@ -9,17 +9,18 @@ import {
   searchRegion,
   getOneRegion,
 } from '../controllers/regionController.js';
-import { protect,admin } from '../middleware/authMiddleware.js';
+// import { protect,admin } from '../middleware/authMiddleware.js';
+import { protectAdmin } from '../middleware/protectAdmin.js';
 
 
 
 const router = Router();
 
-router.post('/create',protect,admin, createRegion);
-router.get('/', protect,getAllregion);
-router.get('/:id', protect, admin, getOneRegion);
-router.put('/:id',protect,admin, updateRegion);
-router.delete('/:id', protect, admin, deleteRegion);
-router.get('/search/:value', protect, admin, searchRegion);
+router.post('/create',protectAdmin, createRegion);
+router.get('/', protectAdmin,getAllregion);
+router.get('/:id', protectAdmin, getOneRegion);
+router.put('/:id',protectAdmin, updateRegion);
+router.delete('/:id', protectAdmin, deleteRegion);
+router.get('/search/:value', protectAdmin, searchRegion);
 
 export default router;

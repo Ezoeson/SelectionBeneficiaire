@@ -12,22 +12,24 @@ import {
   personneNote,
   getNoteByPersonne,
 } from '../controllers/beneficiaireController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+// import { protect, admin } from '../middleware/authMiddleware.js';
+import { protectAdmin } from '../middleware/protectAdmin.js';
+protectAdmin
 
 const router = new Router();
 
-router.get('/',protect, getAllBeneficiaire);
-router.get('/personne',protect, getBeneficiaireNombrePersonne);
+router.get('/', protectAdmin, getAllBeneficiaire);
+router.get('/personne', protectAdmin, getBeneficiaireNombrePersonne);
 
-router.get('/personne/note',protect, personneNote);
+router.get('/personne/note', protectAdmin, personneNote);
 router.get('/note', getNote);
-router.post('/',protect, createBeneficiaire);
-router.get('/count',protect, countBeneficiaire);
-router.get('/:id',protect, geBeneficiaireById);
+router.post('/', protectAdmin, createBeneficiaire);
+router.get('/count', protectAdmin, countBeneficiaire);
+router.get('/:id', protectAdmin, geBeneficiaireById);
 
-router.delete('/:id',protect, deleteBeneficiaire);
+router.delete('/:id', protectAdmin, deleteBeneficiaire);
 
-router.put('/:id',protect, updateBeneficiaire);
-router.get('/notes',protect, getNoteBeneficiaire);
+router.put('/:id', protectAdmin, updateBeneficiaire);
+router.get('/notes', protectAdmin, getNoteBeneficiaire);
 
 export default router;

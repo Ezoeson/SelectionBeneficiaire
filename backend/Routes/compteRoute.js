@@ -10,16 +10,17 @@ import {
   updateCompteBYClerk
 } from '../controllers/comptecontroller.js';
 
-import { protect, admin } from '../middleware/authMiddleware.js';
+// import { protect, admin } from '../middleware/authMiddleware.js';
+import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.get('/',protect,admin, getAllCompte);
+router.get('/',protectAdmin, getAllCompte);
 router.post('/pseudo/pseudo', verificationCompte);
-router.get('/get',protect, getCompte);
+router.get('/get',protectAdmin, getCompte);
 router.put('/:id', updateCompte);
 router.put('/update/:email', updateCompteBYClerk);
-router.delete('/:id',protect,admin, deleteCompte);
+router.delete('/:id',protectAdmin, deleteCompte);
 router.get('/clerk/:clerkId', getbyClerkId);
 
 export default router;

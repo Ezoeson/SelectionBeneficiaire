@@ -7,14 +7,15 @@ import {
   deletedistrict,
   getONedistrict,
 } from '../controllers/districtController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+// import { protect, admin } from '../middleware/authMiddleware.js';
+import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.post('/',protect,admin, createDistrict);
-router.get('/',protect, getAlldistrict);
-router.put('/:id',protect,admin, updatedistrict);
-router.delete('/:id',protect,admin, deletedistrict);
-router.get('/:id',protect,admin, getONedistrict);
+router.post('/',protectAdmin, createDistrict);
+router.get('/',protectAdmin, getAlldistrict);
+router.put('/:id',protectAdmin,updatedistrict);
+router.delete('/:id',protectAdmin, deletedistrict);
+router.get('/:id',protectAdmin, getONedistrict);
 
 export default router;
