@@ -1,3 +1,6 @@
+import asyncHandler from './asyncHandler.js';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 export const protectAdmin = asyncHandler(async (req, res, next) => {
   const token = req.headers.cookie.split(';')[2].split('')[1];
 
