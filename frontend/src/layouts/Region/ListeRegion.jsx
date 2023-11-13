@@ -7,13 +7,13 @@ import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import { FcFullTrash } from 'react-icons/fc';
 import Pagination from '../../components/Pagination/Pagination';
 
-// import {
-//   useGetRegionQuery,
-//   useCreateRegionMutation,
-//   useDeleteRegionMutation,
-//   useGetOneRegionQuery,
-//   useUpdateRegionMutation,
-// } from '../../redux/slices/regionApiSlice';
+import {
+  useGetRegionQuery,
+  useCreateRegionMutation,
+  useDeleteRegionMutation,
+  useGetOneRegionQuery,
+  useUpdateRegionMutation,
+} from '../../redux/slices/regionApiSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
