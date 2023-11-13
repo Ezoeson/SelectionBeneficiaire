@@ -30,7 +30,7 @@ import DeleteUser from './layouts/user/DeleteUser';
 import {
   useGetCompteByClerkQuery,
   useGetCompteQuery,
-} from './redux/slices/compteApiSlice';
+} from './redux/slices/compteSlice';
 
 import { useUser, useAuth } from '@clerk/clerk-react';
 import NavLoader from './navLoader/NavLoader';
