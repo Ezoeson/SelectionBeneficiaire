@@ -14,14 +14,12 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/api/dashboard/user/${id}`,
       }),
-    
 
       keepUnusedDataFor: 2,
     }),
     getDasboardDate: builder.query({
       query: () => ({
         url: '/api/dashboard/date',
-      
       }),
 
       keepUnusedDataFor: 2,

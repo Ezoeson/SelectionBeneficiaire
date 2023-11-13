@@ -8,10 +8,7 @@ import CsvDownloader from 'react-csv-downloader';
 
 import {
   useGetBeneficiaireQuery,
-  useCreateBeneficiaireMutation,
   useDeleteBeneficiaireMutation,
-  useGetOneBeneficiaireQuery,
-  useUpdateBeneficiaireMutation,
 } from '../../redux/slices/beneficiaireApiSlice';
 import { useGetEnqueteurQuery } from '../../redux/slices/enqueteurApiSlice';
 import Loader from '../../components/Loader/Loader';
@@ -145,7 +142,6 @@ const Menage = () => {
             className='outline-none bg-transparent border-none border-b-2 border-gray-400 focus:border-white focus:ring-0 '
           />
         </div>
-       
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[1fr,2fr,1fr,2fr,max-content]'>
@@ -223,7 +219,7 @@ const Menage = () => {
                             />
                           ) : (
                             <img
-                              src={'http://localhost:5000' + personne.image}
+                              src={'/api' + personne.image}
                               alt=''
                               className='w-10 h-10 rounded-full object-cover'
                             />

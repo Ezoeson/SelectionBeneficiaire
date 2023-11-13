@@ -26,27 +26,35 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use('/question', Question);
-app.use('/categorie', CategorieQuestion);
-app.use('/region', Regions);
-app.use('/district', District);
-app.use('/commune', Commune);
-app.use('/fokontany', Fokontany);
+app.use('/api/question', Question);
+app.use('/api/categorie', CategorieQuestion);
+app.use('/api/region', Regions);
+app.use('/api/district', District);
+app.use('/api/commune', Commune);
+app.use('/api/fokontany', Fokontany);
 
-app.use('/enqueteur', Enqueteur);
-app.use('/beneficiaire', Beneficiaire);
-app.use('/personne', Personne);
-app.use('/reponse', Reponse);
-app.use('/formulaire', Formulaire);
-app.use('/compte', Compte);
-app.use('/dashboard', Dashboard);
-app.use('/upload', uploadRoutes);
+app.use('/api/enqueteur', Enqueteur);
+app.use('/api/beneficiaire', Beneficiaire);
+app.use('/api/personne', Personne);
+app.use('/api/reponse', Reponse);
+app.use('/api/formulaire', Formulaire);
+app.use('/api/compte', Compte);
+app.use('/api/dashboard', Dashboard);
+app.use('/api/upload', uploadRoutes);
 
 const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, '/uploads')));
+   
+if (process.env.NODE_ENV ==='production'){
+  app.use(express.static(path.join(__dirname,"/frontend/dist")));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"))
+  })
+} else{
+  app.get('/', (req, res) => {
+    res.send('Server running');
+  });
 
-app.get('/', (req, res) => {
-  res.send('bienvenu');
-});
+}
 
 app.listen(PORT, console.log('SERVER RUNNUNG'));

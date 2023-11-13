@@ -116,7 +116,7 @@ const ListePersonne = () => {
                         <HiMiniUserCircle className='w-10 h-10' />
                       ) : (
                         <img
-                          src={'http://localhost:5000' + item.image}
+                          src={'/api' + item.image}
                           alt=''
                           className='w-10 h-10 rounded-full object-cover'
                         />
@@ -265,7 +265,7 @@ const ShowModal = ({ open, setOpen, id, image }) => {
               <div className='mt-2 flex justify-center'>
                 <div className='flex items-center space-x-2'>
                   <img
-                    src={'http://localhost:5000' + image}
+                    src={'/api' + image}
                     alt=''
                     className='w-[140px] h-[140px] rounded-full object-cover'
                   />
@@ -451,7 +451,7 @@ const AddModal = ({ open, setOpen, refetch, enqueteurId }) => {
                   <BiSolidCameraPlus className='text-[100px]' />
                 ) : (
                   <img
-                    src={'http://localhost:5000' + image}
+                    src={'/api' + image}
                     alt=''
                     className='w-full h-full object-cover rounded-full'
                   />
@@ -684,7 +684,7 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
                   <BiSolidCameraPlus className='text-[100px]' />
                 ) : (
                   <img
-                    src={'http://localhost:5000' + image}
+                    src={'/api' + image}
                     alt=''
                     className='w-full h-full object-cover rounded-full'
                   />

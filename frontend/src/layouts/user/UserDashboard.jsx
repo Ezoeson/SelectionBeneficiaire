@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Confetti from 'react-confetti';
-import { Cloudinary } from '@cloudinary/url-gen';
+
 import CardUser from '../../components/CardUser/CardUser';
 import ColoumnChart from '../../components/ApexChart/ColoumnChart';
 import {

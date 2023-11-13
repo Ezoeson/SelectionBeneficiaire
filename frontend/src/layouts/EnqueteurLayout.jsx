@@ -37,14 +37,7 @@ import { HiOutlineUserPlus } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
 
 const EnqueteurLayout = () => {
-  const userId = 'user_2WneoFqnRd7nuF5oPIy0q6xxqST';
-  // const handleDelete = async () => {
-  //   curl -
-  //     XDELETE -
-  //     H`Authorization: CLERK_SECRET_KEY' 'https://api.clerk.com/v1/users/{userId}`;
-  // };
-  const dispatch = useDispatch();
-  const path = useLocation().pathname;
+  
   // const { search } = useSelector((state) => state.enqueteur);
   const { pageNumber } = useParams();
   const [val, setVal] = useState('');
@@ -132,18 +125,7 @@ const EnqueteurLayout = () => {
                     'md:grid-cols-[1fr,1fr,1fr,max-content] items-center'
                   }
                 >
-                  {/* <div className=''>
-                    <span className='md:hidden font-bold'>Fokontany</span>
-                    {item.fokontany[index].nomFokontany}
-                  </div> */}
-                  {/* <div className=''>
-                    <span className='md:hidden font-bold'>Fokontany</span>{' '}
-                    {item.fokontany === null ? (
-                      <span className='text-red-500'>Null</span>
-                    ) : (
-                      item.fokontany[0].nomFokontany
-                    )}
-                  </div> */}
+
                   <div className='flex items-center space-x-2'>
                     {item.image === null ? (
                       <img
@@ -153,7 +135,7 @@ const EnqueteurLayout = () => {
                       />
                     ) : (
                       <img
-                        src={'http://localhost:5000' + item.image}
+                        src={'/api' + item.image}
                         alt=''
                         className='w-10 h-10 rounded-full object-cover'
                       />
@@ -410,7 +392,7 @@ const AddModal = ({ open, setOpen, refetch }) => {
                 />
               ) : (
                 <img
-                  src={'http://localhost:5000' + image}
+                  src={'/api' + image}
                   alt=''
                   className='w-full h-full object-cover rounded-full'
                 />
@@ -601,7 +583,7 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
                 <BiSolidCameraPlus className='text-[100px]' />
               ) : (
                 <img
-                  src={'http://localhost:5000' + image}
+                  src={'/api' + image}
                   alt=''
                   className='w-full h-full object-cover rounded-full'
                 />

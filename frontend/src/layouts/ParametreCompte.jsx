@@ -129,7 +129,7 @@ const ParametreCompte = () => {
                       />
                     ) : (
                       <img
-                        src={'http://localhost:5000' + item.enqueteur?.image}
+                        src={'/api' + item.enqueteur?.image}
                         alt=''
                         className='w-10 h-10 rounded-full object-cover'
                       />
@@ -387,7 +387,7 @@ const AddModal = ({ open, setOpen, refetch }) => {
                 />
               ) : (
                 <img
-                  src={'http://localhost:5000' + image}
+                  src={'/api' + image}
                   alt=''
                   className='w-full h-full object-cover rounded-full'
                 />
@@ -578,7 +578,7 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
                 <BiSolidCameraPlus className='text-[100px]' />
               ) : (
                 <img
-                  src={'http://localhost:5000' + image}
+                  src={'/api' + image}
                   alt=''
                   className='w-full h-full object-cover rounded-full'
                 />

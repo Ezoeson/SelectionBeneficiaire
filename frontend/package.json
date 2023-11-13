@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.26.3",
-    "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.11.2",
     "@emotion/react": "^11.11.1",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
@@ -22,6 +20,7 @@
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
+    "new": "file:..",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-awesome-reveal": "^4.2.5",

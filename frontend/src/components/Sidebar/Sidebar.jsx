@@ -107,7 +107,7 @@ const Sidebar = () => {
               <Skeleton circle width={60} height={60} />
             ) : (
               <img
-                src={'http://localhost:5000' + image}
+                src={'/api' + image}
                 alt=''
                 className=' hidden h-[60px] w-[60px] object-cover justify-center md:block rounded-full'
               />
@@ -146,11 +146,13 @@ const Sidebar = () => {
               <CiMenuKebab className='dark:text-blue-600 cursor-pointer md:hidden' />
             </div>
             <div className='absolute bottom-0 pb-5 hidden md:block'>
-              <Navlink
-                path={'/parametreCompte'}
-                label='Parametre'
-                icon={AiFillSetting}
-              />
+              {isAdmin && (
+                <Navlink
+                  path={'/parametreCompte'}
+                  label='Parametre'
+                  icon={AiFillSetting}
+                />
+              )}
 
               <Navlink
                 onClick={handleSignOut}
@@ -200,7 +202,7 @@ const Sidebar = () => {
           {!isAdmin && (
             <div className='flex justify-center'>
               <img
-                src={'http://localhost:5000' + image}
+                src={'/api' + image}
                 alt=''
                 className='h-[60px] w-[60px] object-cover rounded-full'
               />
