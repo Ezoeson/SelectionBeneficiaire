@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from 'react-router-dom';
-import { useCheckcodeMutation } from '../../redux/slices/userApiSlice';
+import { useCheckcodeMutation } from '../../redux/slices/userSlice';
 import { toast } from 'react-toastify';
 import { MoonLoader } from 'react-spinners';
 

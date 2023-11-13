@@ -7,8 +7,8 @@ import ColoumnChart from '../../components/ApexChart/ColoumnChart';
 import {
   useGetNoteByPersonneQuery,
   useGetBeneficiaireNombrePersonneQuery,
-} from '../../redux/slices/beneficiaireApiSlice';
-import { useGetPersonneNoteQuery } from '../../redux/slices/enqueteurApiSlice';
+} from '../../redux/slices/beneficiaireSlice';
+import { useGetPersonneNoteQuery } from '../../redux/slices/enqueteurSlice';
 import {
   compteSlice,
   useGetCompteByClerkQuery,

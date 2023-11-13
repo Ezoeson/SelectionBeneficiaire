@@ -13,8 +13,8 @@ import {
   useGetEnqueteurQuery,
   useGetOneEnqueteurQuery,
   useUpdateEnqueteurMutation,
-} from '../redux/slices/enqueteurApiSlice';
-import { useGetCommuneQuery } from '../redux/slices/communeApiSlice';
+} from '../redux/slices/enqueteurSlice';
+import { useGetCommuneQuery } from '../redux/slices/communeSlice';
 import Loader from '../components/Loader/Loader';
 import Modal from '../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

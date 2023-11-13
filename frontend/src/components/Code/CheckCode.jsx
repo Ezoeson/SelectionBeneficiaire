@@ -3,7 +3,7 @@ import { useSignUp } from '@clerk/clerk-react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateAccountMutation } from '../../redux/slices/userApiSlice';
+import { useCreateAccountMutation } from '../../redux/slices/userSlice';
 import Slide from '../Swiper/Slide';
 
 const CheckCode = ({ pseudo, code: code_user, passowrd, email }) => {

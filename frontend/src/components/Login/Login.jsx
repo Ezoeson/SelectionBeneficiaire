@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { clsx } from 'clsx';
-import { useLoginMutation } from '../../redux/slices/userApiSlice';
+import { useLoginMutation } from '../../redux/slices/userSlice';
 
 const Login = () => {
   const [login, { isLoading: loginLoading, isSuccess, isError }] =
