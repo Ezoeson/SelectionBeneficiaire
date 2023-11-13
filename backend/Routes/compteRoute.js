@@ -15,12 +15,12 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.get('/',protectAdmin, getAllCompte);
+router.get('/', getAllCompte);
 router.post('/pseudo/pseudo', verificationCompte);
-router.get('/get',protectAdmin, getCompte);
+router.get('/get', getCompte);
 router.put('/:id', updateCompte);
 router.put('/update/:email', updateCompteBYClerk);
-router.delete('/:id',protectAdmin, deleteCompte);
+router.delete('/:id', deleteCompte);
 router.get('/clerk/:clerkId', getbyClerkId);
 
 export default router;

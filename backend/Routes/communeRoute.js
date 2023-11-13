@@ -14,11 +14,11 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.post('/', protectAdmin, createcommune);
-router.get('/', protectAdmin, getAllcommune);
-router.get('/chart', protectAdmin, getCommuneChart);
-router.put('/:id', protectAdmin, updatecommune);
-router.delete('/:id', protectAdmin, deletecommune);
-router.get('/:id', protectAdmin, getOnecommune);
+router.post('/', createcommune);
+router.get('/', getAllcommune);
+router.get('/chart', getCommuneChart);
+router.put('/:id', updatecommune);
+router.delete('/:id', deletecommune);
+router.get('/:id', getOnecommune);
 
 export default router;

@@ -11,10 +11,10 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.post('/',protectAdmin, createQuestion);
-router.get('/search/:search_value', protectAdmin, getAllQuestion);
-router.put('/:id', protectAdmin, updateQuestion);
-router.delete('/:id', protectAdmin, deleteQuestion);
-router.get('/:id', protectAdmin, getOneQuestion);
+router.post('/', createQuestion);
+router.get('/search/:search_value',  getAllQuestion);
+router.put('/:id',  updateQuestion);
+router.delete('/:id',  deleteQuestion);
+router.get('/:id',  getOneQuestion);
 
 export default router;

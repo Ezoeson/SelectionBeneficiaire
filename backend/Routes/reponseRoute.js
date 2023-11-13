@@ -10,8 +10,8 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = new Router();
 
-router.get('/',protectAdmin, getAllreponse);
+router.get('/', getAllreponse);
 // router.post('/', createReponseAndNote);
-router.post('/',protectAdmin, createManyreponse);
+router.post('/', createManyreponse);
 
 export default router;

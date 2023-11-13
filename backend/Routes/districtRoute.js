@@ -12,10 +12,10 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.post('/',protectAdmin, createDistrict);
-router.get('/',protectAdmin, getAlldistrict);
-router.put('/:id',protectAdmin,updatedistrict);
-router.delete('/:id',protectAdmin, deletedistrict);
-router.get('/:id',protectAdmin, getONedistrict);
+router.post('/', createDistrict);
+router.get('/', getAlldistrict);
+router.put('/:id',updatedistrict);
+router.delete('/:id', deletedistrict);
+router.get('/:id', getONedistrict);
 
 export default router;

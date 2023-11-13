@@ -16,11 +16,11 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = Router();
 
-router.post('/create',protectAdmin, createRegion);
-router.get('/', protectAdmin,getAllregion);
+router.post('/create', createRegion);
+router.get('/', getAllregion);
 router.get('/:id', protectAdmin, getOneRegion);
-router.put('/:id',protectAdmin, updateRegion);
-router.delete('/:id', protectAdmin, deleteRegion);
-router.get('/search/:value', protectAdmin, searchRegion);
+router.put('/:id', updateRegion);
+router.delete('/:id',  deleteRegion);
+router.get('/search/:value',  searchRegion);
 
 export default router;

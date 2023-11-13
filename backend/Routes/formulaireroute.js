@@ -11,10 +11,10 @@ const router = new Router();
 // import { protect, admin } from '../middleware/authMiddleware.js';
 import { protectAdmin } from '../middleware/protectAdmin.js';
 
-router.post('/',protectAdmin, createformulaire);
-router.get('/',protectAdmin, getFormulaire);
-router.put('/:id',protectAdmin, updateFormulaire);
-router.delete('/:id',protectAdmin, deleteFormulaire);
-router.get('/:id',protectAdmin, getOneFormulaire);
+router.post('/',createformulaire);
+router.get('/', getFormulaire);
+router.put('/:id', updateFormulaire);
+router.delete('/:id', deleteFormulaire);
+router.get('/:id', getOneFormulaire);
 
 export default router;

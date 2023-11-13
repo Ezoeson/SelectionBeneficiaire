@@ -12,10 +12,10 @@ import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = new Router();
 router.get('/countBef', nombreBeneficiaireByJourBysemaine);
-router.get('/',protectAdmin, nombreBeneficiaire);
-router.get('/date',protectAdmin, getBeneficiaireCountByDate);
+router.get('/', nombreBeneficiaire);
+router.get('/date', getBeneficiaireCountByDate);
 
-router.get('/user/:id',protectAdmin, userDashboard);
+router.get('/user/:id', userDashboard);
 // router.get('/personne', personneNote);
 
 export default router;

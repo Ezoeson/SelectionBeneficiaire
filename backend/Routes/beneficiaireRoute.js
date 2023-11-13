@@ -18,16 +18,16 @@ protectAdmin
 
 const router = new Router();
 
-router.get('/', protectAdmin, getAllBeneficiaire);
-router.get('/personne', protectAdmin, getBeneficiaireNombrePersonne);
+router.get('/', getAllBeneficiaire);
+router.get('/personne', getBeneficiaireNombrePersonne);
 
-router.get('/personne/note', protectAdmin, personneNote);
+router.get('/personne/note', personneNote);
 router.get('/note', getNote);
-router.post('/', protectAdmin, createBeneficiaire);
-router.get('/count', protectAdmin, countBeneficiaire);
-router.get('/:id', protectAdmin, geBeneficiaireById);
+router.post('/', createBeneficiaire);
+router.get('/count', countBeneficiaire);
+router.get('/:id', geBeneficiaireById);
 
-router.delete('/:id', protectAdmin, deleteBeneficiaire);
+router.delete('/:id', deleteBeneficiaire);
 
 router.put('/:id', protectAdmin, updateBeneficiaire);
 router.get('/notes', protectAdmin, getNoteBeneficiaire);

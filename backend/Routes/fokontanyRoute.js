@@ -11,10 +11,10 @@ const router = new Router();
 // import { protect, admin } from '../middleware/authMiddleware.js';
 import { protectAdmin } from '../middleware/protectAdmin.js';
 
-router.post('/',protectAdmin, createfokontany);
-router.get('/',protectAdmin, getAllfokontany);
-router.put('/:id',protectAdmin, updatefokontany);
-router.delete('/:id',protectAdmin, deletefokontany);
-router.get('/:id',protectAdmin, getOnefokontany);
+router.post('/', createfokontany);
+router.get('/', getAllfokontany);
+router.put('/:id', updatefokontany);
+router.delete('/:id', deletefokontany);
+router.get('/:id', getOnefokontany);
 
 export default router;
