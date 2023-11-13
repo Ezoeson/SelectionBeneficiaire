@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 import jwt from 'jsonwebtoken';
 
 const protect = asyncHandler(async (req, res, next) => {
-  let token;
-  token = req.cookies.__session;
+  const token = req.headers.cookie.split(";")[2].split("=")[1];
+  console.log(token)
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
