@@ -1,8 +1,13 @@
 import asyncHandler from './asyncHandler.js';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import jwt from 'jsonwebtoken';
 export const protectAdmin = asyncHandler(async (req, res, next) => {
-  const token = req.headers.cookie.split(';')[2].split('')[1];
+  //   const token = req.headers.cookie.split(';')[2].split('')[1];
+  const token = req.headers.cookie
+    .split(';')
+    .find((c) => c.trim().startsWith('token='))
+    .split('=')[1];
 
   console.log(token);
 
