@@ -5,6 +5,7 @@ import asyncHandler from '../middleware/asyncHandler.js';
 
 export const nombreBeneficiaireByJourBysemaine = asyncHandler(
   async (req, res, next) => {
+    console.log("")
     const countBeneficiaire = await prisma.beneficiaire.count();
     const countCommune = await prisma.commune.count();
     const countEnqueteur = await prisma.enqueteur.count();

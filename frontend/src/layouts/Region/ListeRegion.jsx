@@ -39,6 +39,7 @@ const ListeRegion = () => {
     refetch,
     isFetching,
   } = useGetRegionQuery();
+  console.log(region)
   const [val, setVal] = useState('');
   const filteredRegions = region?.region.filter((item) =>
     val === '' ? true : item.nomRegion.toLowerCase().includes(val.toLowerCase())

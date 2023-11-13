@@ -1,27 +1,28 @@
 import asyncHandler from './asyncHandler.js';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-  token = req.cookies.jwt;
+  token = req.cookies.__session;
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded);
 
-      const user = await prisma.compte.findUnique({
+      const user = await prisma.compte.findMany({
         where: {
-          id: decoded.userId,
+          clerkId: decoded.sub,
         },
         select: {
           id: true,
           isAdmin: true,
         },
       });
-      if (user) {
-        req.user = user;
-        next();
+      if (user.length > 0) {
+        req.user = user[0]
+        next()
       } else {
         res.status(401);
         throw new Error('Not authorized,user not found');
@@ -44,4 +45,4 @@ const admin = (req, res, next) => {
     throw new Error('Not authorized as an admin');
   }
 };
-export { protect,admin };
+export { protect, admin };
