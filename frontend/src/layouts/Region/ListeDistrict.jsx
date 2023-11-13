@@ -12,9 +12,9 @@ import {
   useDeleteDistrictMutation,
   useGetOneDistrictQuery,
   useUpdateDistrictMutation,
-} from '../../redux/slices/districtApiSlice';
+} from '../../redux/slices/districtSlice';
 import {FiPlus} from 'react-icons/fi';
-import { useGetRegionQuery } from '../../redux/slices/regionApiSlice';
+import { useGetRegionQuery } from '../../redux/slices/regionSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

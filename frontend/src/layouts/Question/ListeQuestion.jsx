@@ -13,7 +13,7 @@ import {
   useUpdateQuestionMutation,
   useGetOneQuestionQuery,
 } from '../../redux/slices/questionApiSlice';
-import { useGetCategorieQuery } from '../../redux/slices/categorieQuestionApiSlice';
+import { useGetCategorieQuery } from '../../redux/slices/categorieSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
@@ -135,7 +135,11 @@ const ListeQuestion = () => {
 
           {(!isLoading || !isFetching) && isSuccess ? (
             <>
-              {Question?.filter((item)=> categorieId === '' ? item.categorieId === idCategorie : item.categorieId === categorieId).map((item) => (
+              {Question?.filter((item) =>
+                categorieId === ''
+                  ? item.categorieId === idCategorie
+                  : item.categorieId === categorieId
+              ).map((item) => (
                 <TableRow
                   key={item.id}
                   col={'md:grid-cols-[2fr,1fr,1fr,max-content] items-center'}

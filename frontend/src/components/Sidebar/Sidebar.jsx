@@ -19,7 +19,7 @@ import { RiMoonFoggyLine } from 'react-icons/ri';
 import {
   useGetCompteByClerkQuery,
   useGetCompteQuery,
-} from '../../redux/slices/compteApiSlice';
+} from '../../redux/slices/compteSlice';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import clsx from 'clsx';

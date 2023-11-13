@@ -12,8 +12,8 @@ import {
   useDeleteCommuneMutation,
   useGetOneCommuneQuery,
   useUpdateCommuneMutation,
-} from '../../redux/slices/communeApiSlice';
-import { useGetDistrictQuery } from '../../redux/slices/districtApiSlice';
+} from '../../redux/slices/communeSlice';
+import { useGetDistrictQuery } from '../../redux/slices/districtSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

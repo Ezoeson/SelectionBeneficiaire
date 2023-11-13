@@ -11,7 +11,7 @@ import {
   useDeleteFormulaireMutation,
   useGetOneFormulaireQuery,
   useUpdateFormulaireMutation,
-} from '../../redux/slices/formulaireApiSlice';
+} from '../../redux/slices/formulaireSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

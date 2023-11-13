@@ -6,7 +6,7 @@ import { HiMiniTrash, HiMiniPencil, HiMiniUserCircle } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import { useParams } from 'react-router-dom';
 import { FcFullTrash } from 'react-icons/fc';
-import { useGetFokontanyQuery } from '../../redux/slices/fokontanyApiSlice';
+import { useGetFokontanyQuery } from '../../redux/slices/fokontanySlice';
 
 import {
   useGetBeneficiaireQuery,
@@ -14,7 +14,7 @@ import {
   useDeleteBeneficiaireMutation,
   useGetOneBeneficiaireQuery,
   useUpdateBeneficiaireMutation,
-} from '../../redux/slices/beneficiaireApiSlice';
+} from '../../redux/slices/beneficiaireSlice';
 
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
@@ -34,7 +34,7 @@ import {
   compteSlice,
   useGetCompteByClerkQuery,
   useGetCompteQuery,
-} from '../../redux/slices/compteApiSlice';
+} from '../../redux/slices/compteSlice';
 
 import { useUser, useAuth } from '@clerk/clerk-react';
 

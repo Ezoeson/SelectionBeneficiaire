@@ -4,10 +4,10 @@ import { useGetQuestionQuery } from '../../redux/slices/questionApiSlice';
 import { useForm, Controller, set } from 'react-hook-form';
 
 import { useState } from 'react';
-import { useCreateReponseMutation } from '../../redux/slices/reponseApiSlice';
-import { useGetFormulaireQuery } from '../../redux/slices/formulaireApiSlice';
-import { useGetCategorieQuery } from '../../redux/slices/categorieQuestionApiSlice';
-import { useGetCompteByClerkQuery } from '../../redux/slices/compteApiSlice';
+import { useCreateReponseMutation } from '../../redux/slices/reponseSlice';
+import { useGetFormulaireQuery } from '../../redux/slices/formulaireSlice';
+import { useGetCategorieQuery } from '../../redux/slices/categorieSlice';
+import { useGetCompteByClerkQuery } from '../../redux/slices/compteSlice';
 import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';

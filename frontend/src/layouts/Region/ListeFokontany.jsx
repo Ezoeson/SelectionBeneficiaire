@@ -12,9 +12,9 @@ import {
   useGetFokontanyQuery,
   useGetOneFokontanyQuery,
   useUpdateFokontanyMutation,
-} from '../../redux/slices/fokontanyApiSlice';
-import { useGetEnqueteurSelectQuery } from '../../redux/slices/enqueteurApiSlice';
-import { useGetCommuneQuery } from '../../redux/slices/communeApiSlice';
+} from '../../redux/slices/fokontanySlice';
+import { useGetEnqueteurSelectQuery } from '../../redux/slices/enqueteurSlice';
+import { useGetCommuneQuery } from '../../redux/slices/communeSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

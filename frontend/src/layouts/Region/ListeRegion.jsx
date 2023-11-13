@@ -13,7 +13,7 @@ import {
   useDeleteRegionMutation,
   useGetOneRegionQuery,
   useUpdateRegionMutation,
-} from '../../redux/slices/regionApiSlice.jsx';
+} from '../../redux/slices/regionSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

@@ -12,8 +12,8 @@ import {
   useDeleteCategorieMutation,
   useGetOneCategorieQuery,
   useUpdateCategorieMutation,
-} from '../../redux/slices/categorieQuestionApiSlice';
-import { useGetFormulaireQuery } from '../../redux/slices/formulaireApiSlice';
+} from '../../redux/slices/categorieSlice';
+import { useGetFormulaireQuery } from '../../redux/slices/formulaireSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
@@ -54,15 +54,13 @@ const ListeCategorie = () => {
   const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const toggleAddModal = () => setAddModal(!addModal);
   const toggleUpdateModal = () => setUpdateModal(!addModal);
-  const [formulaireId,setFormulaireId]= useState('')
-    const {
-      data: Formulaires,
-      isLoading: loadingForm,
-      isSuccess: successForm,
-    } = useGetFormulaireQuery();
-    const idFormulaire = Formulaires && Formulaires[0]?.id
-
-
+  const [formulaireId, setFormulaireId] = useState('');
+  const {
+    data: Formulaires,
+    isLoading: loadingForm,
+    isSuccess: successForm,
+  } = useGetFormulaireQuery();
+  const idFormulaire = Formulaires && Formulaires[0]?.id;
 
   return (
     <div className='p-4'>

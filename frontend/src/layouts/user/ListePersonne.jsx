@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { HiMiniTrash, HiMiniPencil, HiMiniUserCircle } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import { BiSolidCameraPlus } from 'react-icons/bi';
-import { useGetBeneficiaireQuery } from '../../redux/slices/beneficiaireApiSlice';
+import { useGetBeneficiaireQuery } from '../../redux/slices/beneficiaireSlice';
 import { FcFullTrash } from 'react-icons/fc';
 import { TbEyeQuestion } from 'react-icons/tb';
 import Pagination from '../../components/Pagination/Pagination';
@@ -16,7 +16,7 @@ import {
   useDeletePersonneMutation,
   useGetOnePersonneQuery,
   useUpdatePersonneMutation,
-} from '../../redux/slices/personneApiSlice';
+} from '../../redux/slices/personneSlice';
 
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
@@ -37,7 +37,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUploadImageMutation } from '../../redux/slices/uploadSlice';
 import { useAuth } from '@clerk/clerk-react';
-import { useGetCompteByClerkQuery } from '../../redux/slices/compteApiSlice';
+import { useGetCompteByClerkQuery } from '../../redux/slices/compteSlice';
 
 const ListePersonne = () => {
   const {

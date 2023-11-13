@@ -9,8 +9,8 @@ import CsvDownloader from 'react-csv-downloader';
 import {
   useGetBeneficiaireQuery,
   useDeleteBeneficiaireMutation,
-} from '../../redux/slices/beneficiaireApiSlice';
-import { useGetEnqueteurQuery } from '../../redux/slices/enqueteurApiSlice';
+} from '../../redux/slices/beneficiaireSlice';
+import { useGetEnqueteurQuery } from '../../redux/slices/enqueteurSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
@@ -33,7 +33,7 @@ import {
   compteSlice,
   useGetCompteByClerkQuery,
   useGetCompteQuery,
-} from '../../redux/slices/compteApiSlice';
+} from '../../redux/slices/compteSlice';
 
 const Menage = () => {
   const { userId } = useAuth();
