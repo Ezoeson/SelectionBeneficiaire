@@ -422,7 +422,7 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
     <SlideOver open={open} setOpen={setOpen}>
       {show ? (
         <div>
-          <h1 className='text-center font-bold text-xl'>Update student {id}</h1>
+          <h1 className='text-center font-bold text-xl'>Modifier Region {id}</h1>
 
           <div className='flex items-center justify-center'></div>
 

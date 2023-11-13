@@ -95,7 +95,7 @@ const ForgotCode = () => {
             {!successfulCreation && !complete && (
               <>
                 <div className='sm:col-span-3'>
-                  <label className='block text-sm font-medium leading-6  text-gray-900'>
+                  <label className='block text-sm font-medium leading-6  text-indigo-600'>
                     S'il vous plait entrer votre email
                   </label>
                   <div className='mt-2'>
@@ -115,7 +115,7 @@ const ForgotCode = () => {
             {successfulCreation && !complete && (
               <>
                 <div className='sm:col-span-3'>
-                  <label className='block text-sm font-medium leading-6  text-gray-900'>
+                  <label className='block text-sm font-medium leading-6  text-indigo-500'>
                     entrez votre code
                   </label>
                   <div className='mt-2'>
@@ -127,7 +127,7 @@ const ForgotCode = () => {
                   </div>
                 </div>
                 <div className='sm:col-span-3'>
-                  <label className='block text-sm font-medium leading-6  text-gray-900'>
+                  <label className='block text-sm font-medium leading-6  text-indigo-500'>
                     Nouveau mot de passe
                   </label>
                   <div className='mt-2'>

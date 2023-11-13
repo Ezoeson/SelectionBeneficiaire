@@ -11,7 +11,7 @@ export const getCompteById = asyncHandler(async (req, res, next) => {
     },
   });
   res.status(200).json(compte);
-}) 
+});
 export const getAllCompte = asyncHandler(async (req, res, next) => {
   const compte = await prisma.compte.findMany({
     include: {
@@ -19,7 +19,7 @@ export const getAllCompte = asyncHandler(async (req, res, next) => {
     },
   });
   res.status(200).json(compte);
-}) 
+});
 
 export const updateCompte = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
@@ -39,7 +39,21 @@ export const updateCompte = asyncHandler(async (req, res, next) => {
     },
   });
   res.status(200).json(compte);
-}) 
+});
+export const updateCompteBYClerk = asyncHandler(async (req, res, next) => {
+  const { password,email } = req.body;
+  const hashpassword = await bcrypt.hash(password, 10);
+  const compte = await prisma.compte.update({
+    where: {
+      email: req.params.email,
+    },
+    data: {
+      password: hashpassword,
+      email
+    },
+  });
+  res.status(200).json(compte);
+});
 export const getbyClerkId = asyncHandler(async (req, res, next) => {
   const compte = await prisma.compte.findUnique({
     where: {
@@ -47,14 +61,15 @@ export const getbyClerkId = asyncHandler(async (req, res, next) => {
     },
     include: {
       enqueteur: {
-        include:{
-          fokontany:true
-        }
+        include: {
+          fokontany: true,
+        },
       },
     },
   });
   res.status(200).json(compte);
-}) 
+});
+
 export const deleteCompte = asyncHandler(async (req, res, next) => {
   console.log('delete');
   const compte = await prisma.compte.delete({
@@ -63,8 +78,8 @@ export const deleteCompte = asyncHandler(async (req, res, next) => {
     },
   });
   res.status(200).json(compte);
-}) 
-export const getCompte =asyncHandler (async (req, res, next) => {
+});
+export const getCompte = asyncHandler(async (req, res, next) => {
   const compte = await prisma.compte.findMany({
     where: {
       codeEnqueteur: {
@@ -85,7 +100,7 @@ export const getCompte =asyncHandler (async (req, res, next) => {
     },
   });
   res.status(200).json(compte);
-}) 
+});
 export const verificationCompte = asyncHandler(async (res, req, next) => {
   const { pseudo } = req.body;
   const verification = await prisma.compte.findUnique({
@@ -97,4 +112,4 @@ export const verificationCompte = asyncHandler(async (res, req, next) => {
     return res.status(404).json("Vous n'avez pas du compte");
   }
   return res.status(200).json({ verification, Message: 'Vouz avez un compte' });
-}); 
+});

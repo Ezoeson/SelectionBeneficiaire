@@ -38,11 +38,18 @@ export const compteSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateCompteByclerk: builder.mutation({
+      query: ({ data, clerkId }) => ({
+        url: URL_COMPTE + '/update/' + clerkId,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
     getOneCompte: builder.query({
       query: (id) => ({
         url: URL_COMPTE + '/' + id,
       }),
-     
+
       keepUnusedDataFor: 5,
     }),
   }),
@@ -54,5 +61,6 @@ export const {
   useGetCompteEnqueteurQuery,
   useDeleteCompteMutation,
   useGetOneCompteQuery,
-  useUpdateCompteMutation
+  useUpdateCompteMutation,
+  useUpdateCompteByclerkMutation
 } = compteSlice;

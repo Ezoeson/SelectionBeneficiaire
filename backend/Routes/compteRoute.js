@@ -7,6 +7,7 @@ import {
   deleteCompte,
   getCompte,
   verificationCompte,
+  updateCompteBYClerk
 } from '../controllers/comptecontroller.js';
 
 import { protect, admin } from '../middleware/authMiddleware.js';
@@ -17,6 +18,7 @@ router.get('/',protect,admin, getAllCompte);
 router.post('/pseudo/pseudo', verificationCompte);
 router.get('/get',protect, getCompte);
 router.put('/:id', updateCompte);
+router.put('/update/:email', updateCompteBYClerk);
 router.delete('/:id',protect,admin, deleteCompte);
 router.get('/clerk/:clerkId', getbyClerkId);
 
