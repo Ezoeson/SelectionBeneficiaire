@@ -15,7 +15,7 @@ import Reponse from './Routes/reponseRoute.js';
 import Formulaire from './Routes/formulaireroute.js';
 import Compte from './Routes/compteRoute.js';
 
-import uploadRoutes from './routes/uploadRoute.js';
+import uploadRoutes from './Routes/uploadRoute.js';
 import Dashboard from './Routes/dashboardRoute.js';
 
 const app = express();
