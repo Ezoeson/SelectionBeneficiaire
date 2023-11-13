@@ -16,8 +16,8 @@ const protect = asyncHandler(async (req, res, next) => {
           clerkId: decoded.sub,
         },
         select: {
-          clerkId: true,
           isAdmin: true,
+          clerkId: true,
         },
       });
       if (user.length > 0) {
