@@ -16,7 +16,7 @@ const protect = asyncHandler(async (req, res, next) => {
           clerkId: decoded.sub,
         },
         select: {
-          id: true,
+          clerkId: true,
           isAdmin: true,
         },
       });
