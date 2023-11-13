@@ -14,7 +14,7 @@ import { MdSpaceDashboard, MdLightMode, MdDarkMode } from 'react-icons/md';
 import { IoInvertModeOutline } from 'react-icons/io5';
 import { AiFillSetting } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useGetOneEnqueteurQuery } from '../../redux/slices/enqueteurApiSlice';
+import { useGetOneEnqueteurQuery } from '../../redux/slices/enqueteurSlice';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 

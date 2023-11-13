@@ -13,7 +13,7 @@ import {
   compteSlice,
   useGetCompteByClerkQuery,
   useGetCompteQuery,
-} from '../../redux/slices/compteApiSlice';
+} from '../../redux/slices/compteSlice';
 
 import { useUser, useAuth } from '@clerk/clerk-react';
 import BarChart from '../../components/BarChart/BarChart';

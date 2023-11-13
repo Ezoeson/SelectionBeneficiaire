@@ -8,7 +8,7 @@ import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import {
   useGetBeneficiaireQuery,
   useDeleteBeneficiaireMutation,
-} from '../redux/slices/beneficiaireApiSlice';
+} from '../redux/slices/beneficiaireSlice';
 
 import Loader from '../components/Loader/Loader';
 import Modal from '../components/Modal/Modal';
