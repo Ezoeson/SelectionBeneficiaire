@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import Chart from 'react-apexcharts';
-import { useGetCommuneChartQuery } from '../../redux/slices/communeApiSlice';
+import { useGetCommuneChartQuery } from '../../redux/slices/communeSlice';
 
 const ApexChart = ({ serie, categories }) => {
   console.log(serie);
