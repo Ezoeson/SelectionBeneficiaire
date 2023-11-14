@@ -7,12 +7,13 @@ import {
 } from '../controllers/dashboardController.js';
 
 
-import { protect, admin } from '../middleware/authMiddleware.js';
-// import { protectAdmin } from '../middleware/protectAdmin.js';
+// import { protect, admin } from '../middleware/authMiddleware.js';
+import { protectAdmin } from '../middleware/protectAdmin.js';
+
 
 const router = new Router();
-router.get('/countBef', nombreBeneficiaireByJourBysemaine);
-router.get('/',admin,protect, nombreBeneficiaire);
+router.get('/countBef',  nombreBeneficiaireByJourBysemaine);
+router.get('/',  nombreBeneficiaire);
 router.get('/date', getBeneficiaireCountByDate);
 
 router.get('/user/:id', userDashboard);

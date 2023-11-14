@@ -76,7 +76,7 @@ function UserDashboard() {
   }
   return (
     <section className='mt-10 px-8'>
-      <div className='max-w[1280px] px-8 mt-4  mx-auto grid  gap-y-5  min-[500px]:grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 '>
+      <div className=' ml-10 max-w[1280px] px-8 mt-4  mx-auto grid  gap-y-5 gap-x-10  min-[500px]:grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 '>
         {success &&
           !loadingDashboard &&
           enqueteur.statistic.map((stat, index) => (
@@ -108,7 +108,7 @@ function UserDashboard() {
         )}
       </div>
 
-      <div className='grid md:grid-cols-2  px-8 mt-4 max-w[1280px] gap-y-4 gap-4 '>
+      <div className='ml-10 px-8 mt-4 max-w[1280px] gap-y-4 gap-4 '>
         <div className='h-[450px] hidden md:block  bg-slate-100  dark:bg-slate-900 w-[800px]  rounded shadow-md shadow-blue-800'>
           <p className='p-3 font-semibold dark:text-slate-100'>
             Nombre de beneficiaire

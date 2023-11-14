@@ -4,12 +4,12 @@ const prisma = new PrismaClient();
 import jwt from 'jsonwebtoken';
 
 const protect = asyncHandler(async (req, res, next) => {
-  const token = req.headers.cookie.split(";")[2].split("=")[1];
-  console.log(token)
+  const token = req.headers.cookie.split(';')
+  console.log(token);
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
- 
+      console.log(decoded)
 
       const user = await prisma.compte.findMany({
         where: {
@@ -21,8 +21,8 @@ const protect = asyncHandler(async (req, res, next) => {
         },
       });
       if (user.length > 0) {
-        req.user = user[0]
-        next()
+        req.user = user[0];
+        next();
       } else {
         res.status(401);
         throw new Error('Not authorized,user not found');

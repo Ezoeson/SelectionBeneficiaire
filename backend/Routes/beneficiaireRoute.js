@@ -14,7 +14,7 @@ import {
 } from '../controllers/beneficiaireController.js';
 // import { protect, admin } from '../middleware/authMiddleware.js';
 import { protectAdmin } from '../middleware/protectAdmin.js';
-protectAdmin
+
 
 const router = new Router();
 
@@ -29,7 +29,7 @@ router.get('/:id', geBeneficiaireById);
 
 router.delete('/:id', deleteBeneficiaire);
 
-router.put('/:id', protectAdmin, updateBeneficiaire);
-router.get('/notes', protectAdmin, getNoteBeneficiaire);
+router.put('/:id', updateBeneficiaire);
+router.get('/notes', getNoteBeneficiaire);
 
 export default router;
