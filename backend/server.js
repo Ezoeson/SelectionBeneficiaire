@@ -44,17 +44,16 @@ app.use('/api/upload', uploadRoutes);
 
 const __dirname = path.resolve();
 app.use('/api/uploads', express.static(path.join(__dirname, '/uploads')));
-   
-if (process.env.NODE_ENV ==='production'){
-  app.use(express.static(path.join(__dirname,"/frontend/dist")));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"))
-  })
-} else{
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+  });
+} else {
   app.get('/', (req, res) => {
     res.send('Server running');
   });
-
 }
 
 app.listen(PORT, console.log('SERVER RUNNUNG'));

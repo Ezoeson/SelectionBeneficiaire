@@ -4,6 +4,7 @@ import TableRow from '../components/Tables/TableRow';
 
 import { HiMiniTrash, HiMiniPencil } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
+import { FcFullTrash } from 'react-icons/fc';
 
 import {
   useGetBeneficiaireQuery,
@@ -102,42 +103,29 @@ const Beneficiaire = () => {
         Liste de tous les Beneficiaires
       </h2>
       <div className='flex items-center justify-between my-3'>
-        <div className='flex flex-col space-y-2'>
-          <div className=' hover-bg-blue-700  w-[100px] text-white font-bold py-2 px-4  rounded'>
-            <CsvDownloader
-              columns={columns}
-              filename={'beneficiaires.csv'}
-              //
-              datas={formattedData}
-              meta='true'
-              separator=';'
-              onClick={exportData}
-            >
-              <img src='csv.png' alt='' className='rounded w-10 h-10' />
-              <p className='dark:text-white text-slate-900'>Export</p>
-            </CsvDownloader>
-          </div>
-
-          <div className='border border-slate-700 dark:border-slate-500 md:w-80 w-40 rounded-md flex  px-3 items-center space-x-2  dark:text-white'>
-            <RiSearchLine size={'20px'} />
-            <input
-              onChange={(e) => setVal(e.target.value)}
-              value={val}
-              type='text'
-              className='outline-none bg-transparent border-none border-b-2 border-gray-400 focus:border-white focus:ring-0 '
-            />
-          </div>
+        <div className=' hover-bg-blue-700  w-[100px] text-white font-bold py-2 px-4  rounded'>
+          <CsvDownloader
+            columns={columns}
+            filename={'beneficiaires.csv'}
+            //
+            datas={formattedData}
+            meta='true'
+            separator=';'
+            onClick={exportData}
+          >
+            <img src='csv.png' alt='' className='rounded w-10 h-10' />
+            <p className='dark:text-white text-slate-900'>Exporter</p>
+          </CsvDownloader>
         </div>
-
-        {/* <div
-          onClick={toggleAddModal}
-          className='flex justify-center cursor-pointer rounded-md bg-gradient-to-r from-cyan-400 to-indigo-600 items-center px-2 md:w-max w-20'
-        >
-          <FiPlus size={'30px'} className='text-white' />
-          <button className=' text-white py-2 px-4   hidden md:block'>
-            Ajout beneficiaire
-          </button>
-        </div> */}
+        <div className='border border-slate-700 dark:border-slate-500 md:w-80 w-40 rounded-md flex  px-3 items-center space-x-2  dark:text-white'>
+          <RiSearchLine size={'20px'} />
+          <input
+            onChange={(e) => setVal(e.target.value)}
+            value={val}
+            type='text'
+            className='outline-none bg-transparent border-none border-b-2 border-gray-400 focus:border-white focus:ring-0 '
+          />
+        </div>
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[1fr,2fr,1fr,2fr,max-content]'>
@@ -331,22 +319,14 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
                   aria-hidden='true'
                 />
               </div>
-              <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
-                <Dialog.Title
-                  as='h3'
-                  className='text-base font-semibold leading-6 text-gray-900'
-                >
-                  Supprimez ce beneficiaire
-                </Dialog.Title>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Voulez-vous supprimer ce Beneficiaire?
-                  </p>
+              <div className='mt-3 text-center w-full flex justify-center items-center sm:ml-4 sm:mt-0 sm:text-left'>
+                <div className='mt-2 flex justify-center'>
+                  <FcFullTrash className='text-[175px]' />
                 </div>
               </div>
             </div>
           </div>
-          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'>
+          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
             <button
               type='button'
               className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'

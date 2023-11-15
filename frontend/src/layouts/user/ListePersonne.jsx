@@ -223,8 +223,8 @@ const Actions = ({
         onClick={showFunc}
         className='text-xl cursor-pointer '
       />
-      <HiMiniTrash onClick={deleteFunc} className='text-xl' />
-      <HiMiniPencil onClick={updateFunc} className='text-xl' />
+      <HiMiniTrash onClick={deleteFunc} className='text-xl cursor-pointer ' />
+      <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer ' />
     </div>
   );
 };
@@ -274,7 +274,7 @@ const ShowModal = ({ open, setOpen, id, image }) => {
             </div>
           </div>
         </div>
-        <div className='bg-gray-50 dark:bg-slate-900  px-4 py-5 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
+        <div className='bg-gray-50 dark:bg-slate-900  px-4 py-8 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
           <button
             type='button'
             className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
@@ -347,7 +347,7 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
               className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
               onClick={handleDelete}
             >
-              Supprimez
+              Supprimer
             </button>
             <button
               type='button'

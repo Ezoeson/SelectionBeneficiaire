@@ -237,8 +237,8 @@ const Actions = ({
 
   return (
     <div className='flex items-center justify-center space-x-4'>
-      <HiMiniTrash onClick={deleteFunc} className='text-xl' />
-      <HiMiniPencil onClick={updateFunc} className='text-xl' />
+      <HiMiniTrash onClick={deleteFunc} className='text-xl cursor-pointer ' />
+      <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer ' />
     </div>
   );
 };
@@ -304,7 +304,7 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
               className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
               onClick={handleDelete}
             >
-              Supprimez
+              Supprimer
             </button>
             <button
               type='button'

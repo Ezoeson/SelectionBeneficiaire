@@ -209,8 +209,8 @@ const Actions = ({
 
   return (
     <div className='flex items-center justify-center space-x-4'>
-      <HiMiniTrash onClick={deleteFunc} className='text-xl' />
-      <HiMiniPencil onClick={updateFunc} className='text-xl' />
+      <HiMiniTrash onClick={deleteFunc} className='text-xl cursor-pointer ' />
+      <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer ' />
     </div>
   );
 };
@@ -261,37 +261,27 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
                   aria-hidden='true'
                 />
               </div>
-              <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
-                <Dialog.Title
-                  as='h3'
-                  className='text-base font-semibold leading-6 text-gray-900'
-                >
-                  Delete Enqueteur
-                </Dialog.Title>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Are you sure you want to delete this enqueteur? All of your
-                    data will be permanently removed. This action cannot be
-                    undone.
-                  </p>
+              <div className='mt-3 text-center w-full flex justify-center items-center sm:ml-4 sm:mt-0 sm:text-left'>
+                <div className='mt-2 flex justify-center'>
+                  <FcFullTrash className='text-[175px]' />
                 </div>
               </div>
             </div>
           </div>
-          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'>
+          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
             <button
               type='button'
               className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
               onClick={handleDelete}
             >
-              Delete
+              Supprimer
             </button>
             <button
               type='button'
               className='mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto'
               onClick={() => setOpen(false)}
             >
-              Cancel
+              Annuler
             </button>
           </div>
         </>
@@ -575,7 +565,7 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
     <SlideOver open={open} setOpen={setOpen}>
       {show ? (
         <div>
-          <h1 className='text-center font-bold text-xl'>Ajout enqueteur</h1>
+          <h1 className='text-center font-bold text-xl'>Modifier enqueteur</h1>
 
           <div className='flex items-center justify-center'>
             <div className='w-40 h-40 rounded-full border border-dashed border-slate-950 flex items-center justify-center relative'>

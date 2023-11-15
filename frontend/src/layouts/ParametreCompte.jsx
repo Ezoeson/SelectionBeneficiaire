@@ -198,7 +198,7 @@ const Actions = ({
   return (
     <div className='flex items-center justify-center space-x-4'>
       <HiMiniTrash onClick={deleteFunc} className='text-xl cursor-pointer' />
-      <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer' />
+      {/* <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer' /> */}
     </div>
   );
 };
@@ -249,30 +249,20 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
                   aria-hidden='true'
                 />
               </div>
-              <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
-                <Dialog.Title
-                  as='h3'
-                  className='text-base font-semibold leading-6 text-gray-900'
-                >
-                  Delete Enqueteur
-                </Dialog.Title>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Are you sure you want to delete this enqueteur? All of your
-                    data will be permanently removed. This action cannot be
-                    undone.
-                  </p>
+              <div className='mt-3 text-center w-full flex justify-center items-center sm:ml-4 sm:mt-0 sm:text-left'>
+                <div className='mt-2 flex justify-center'>
+                  <FcFullTrash className='text-[175px]' />
                 </div>
               </div>
             </div>
           </div>
-          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'>
+          <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
             <button
               type='button'
               className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
               onClick={handleDelete}
             >
-              supprimer
+              Supprimer
             </button>
             <button
               type='button'
