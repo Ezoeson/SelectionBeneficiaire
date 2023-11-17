@@ -10,9 +10,9 @@ import { protect, admin } from '../middleware/authMiddleware.js';
 import { protectAdmin } from '../middleware/protectAdmin.js';
 
 const router = new Router();
-router.get('/countBef', protect, nombreBeneficiaireByJourBysemaine);
+router.get('/countBef', nombreBeneficiaireByJourBysemaine);
 router.get('/', nombreBeneficiaire);
-router.get('/date',protect, getBeneficiaireCountByDate);
+router.get('/date', getBeneficiaireCountByDate);
 
 router.get('/user/:id', userDashboard);
 // router.get('/personne', personneNote);
