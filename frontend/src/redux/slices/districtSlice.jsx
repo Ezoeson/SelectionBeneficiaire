@@ -24,7 +24,7 @@ export const districtSlice = apiSlice.injectEndpoints({
         url: URL_DISTRICT,
       }),
       providesTags: ['District'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 3,
     }),
     deleteDistrict: builder.mutation({
       query: (id) => ({
@@ -37,7 +37,7 @@ export const districtSlice = apiSlice.injectEndpoints({
         url: URL_DISTRICT + '/' + id,
       }),
       providesTags: ['District'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 3,
     }),
   }),
 });

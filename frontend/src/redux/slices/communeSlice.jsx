@@ -24,7 +24,7 @@ export const communeSlice = apiSlice.injectEndpoints({
         url: URL_COMMUNE,
       }),
       providesTags: ['Commune'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     deleteCommune: builder.mutation({
       query: (id) => ({
@@ -44,7 +44,7 @@ export const communeSlice = apiSlice.injectEndpoints({
         url: '/api/commune/chart',
       }),
       providesTags: ['Commune'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
   }),
 });

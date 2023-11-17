@@ -43,7 +43,7 @@ export const nombreBeneficiaireByJourBysemaine = asyncHandler(
         data: countFomulaire,
       },
       {
-        label: 'Nombre des categorieas de question',
+        label: 'Nombre des categories de question',
         data: countCatgeorie,
       },
       {

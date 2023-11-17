@@ -17,7 +17,7 @@ export const formulaireSlice = apiSlice.injectEndpoints({
         url: URL_FORMULAIRE,
       }),
       providesTags: ['Formulaire'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     updateFormulaire: builder.mutation({
       query: ({ data, id }) => ({

@@ -24,7 +24,7 @@ export const fokontanySlice = apiSlice.injectEndpoints({
         url: URL_FOKONTANY,
       }),
      
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     deleteFokontany: builder.mutation({
       query: (id) => ({

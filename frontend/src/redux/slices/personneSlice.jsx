@@ -17,14 +17,14 @@ export const personneSlice = apiSlice.injectEndpoints({
         url: URL_PERSONNE,
       }),
       providesTags: ['Personne'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     getOnePersonne: builder.query({
       query: (id) => ({
         url: URL_PERSONNE + '/' + id,
       }),
       providesTags: ['Personne'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     updatePersonne: builder.mutation({
       query: ({ id, data }) => ({

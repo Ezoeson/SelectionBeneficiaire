@@ -18,7 +18,7 @@ export const questionApiSlice = apiSlice.injectEndpoints({
         url: `/api/question/search/${search_value}`,
       }),
       providesTags: ['Question'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     updateQuestion: builder.mutation({
       query: ({ data, id }) => ({

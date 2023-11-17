@@ -17,7 +17,7 @@ export const categorieSlice = apiSlice.injectEndpoints({
         url: URL_CATEGORIE,
       }),
       providesTags: ['Categorie'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     updateCategorie: builder.mutation({
       query: ({ data, id }) => ({

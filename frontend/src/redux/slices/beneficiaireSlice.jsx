@@ -17,7 +17,7 @@ export const beneficiaireSlice = apiSlice.injectEndpoints({
         url: URL_BENEFICIAIRE,
       }),
       providesTags: ['Beneficiaire'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
 
     countBeneficiaire: builder.query({
@@ -25,7 +25,7 @@ export const beneficiaireSlice = apiSlice.injectEndpoints({
         url: '/api/beneficiaire/count',
       }),
       providesTags: ['Beneficiaire'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     updateBeneficiaire: builder.mutation({
       query: ({ data, id }) => ({

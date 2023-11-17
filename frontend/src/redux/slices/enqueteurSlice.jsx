@@ -33,7 +33,7 @@ export const enqueteurSlice = apiSlice.injectEndpoints({
         url: '/api/enqueteur/get',
       }),
       providesTags: ['Enqueteur'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 3,
     }),
     uploadUserImage: builder.mutation({
       query: (data) => ({
@@ -61,7 +61,7 @@ export const enqueteurSlice = apiSlice.injectEndpoints({
         url: `${URL_ENQUETEUR}/note/${id}`,
       }),
       providesTags: ['Enqueteur'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 3,
     }),
     getSerchEnqueteur: builder.query({
       query: (enqueteurSearch) => ({

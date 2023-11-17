@@ -16,7 +16,7 @@ export const regionSlice = apiSlice.injectEndpoints({
         url: REGION_URL,
       }),
       providesTags: ['Region'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
     deleteRegion: builder.mutation({
       query: (id) => ({
