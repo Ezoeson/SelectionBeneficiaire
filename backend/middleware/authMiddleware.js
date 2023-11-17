@@ -21,7 +21,7 @@ const protect = asyncHandler(async (req, res, next) => {
         },
       });
       if (user?.length > 0) {
-        req?.user = user[0];
+        req.user = user[0];
         next();
       } else {
         res.status(401);
