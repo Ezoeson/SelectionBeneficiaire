@@ -17,7 +17,7 @@ import { useGetFormulaireQuery } from '../../redux/slices/formulaireSlice';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { Dialog, Transition } from '@headlessui/react';
+
 import Message from '../../components/Message/Message';
 import SlideOver from '../../components/Modal/SlideOver';
 import Input from '../../components/Input/Input';
