@@ -7,8 +7,8 @@ import {
   deletedistrict,
   getONedistrict,
 } from '../controllers/districtController.js';
-// import { protect, admin } from '../middleware/authMiddleware.js';
-import { protectAdmin } from '../middleware/protectAdmin.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
+
 
 const router = Router();
 

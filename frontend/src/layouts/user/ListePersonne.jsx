@@ -79,8 +79,9 @@ const ListePersonne = () => {
         </button>
       </div>
       <div className='w-full min-h-[150px] bg-slate-50  dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
-        <TableHeader col='md:grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr,max-content]'>
+        <TableHeader col='md:grid-cols-[1fr,2fr,2fr,1fr,1fr,1fr,1fr,max-content]'>
           <div className='md:hidden'>Liste personne</div>
+          <div className='hidden md:block'>Menage</div>
           <div className='hidden md:block'>Nom</div>
           <div className='hidden md:block'>Prenom</div>
           <div className='hidden md:block'>Age</div>
@@ -108,9 +109,13 @@ const ListePersonne = () => {
                   <TableRow
                     key={item.id}
                     col={
-                      'md:grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr,max-content] items-center'
+                      'md:grid-cols-[1fr,2fr,2fr,1fr,1fr,1fr,1fr,max-content] items-center'
                     }
                   >
+                    <div className='flex items-center space-x-2'>
+                      <span className='md:hidden font-bold'>Menage:</span>{' '}
+                      <span>{item.beneficiaire.nomBeneficiaire}</span>
+                    </div>
                     <div className='flex items-center space-x-2'>
                       {item.image === null ? (
                         <HiMiniUserCircle className='w-10 h-10' />

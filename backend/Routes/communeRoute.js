@@ -9,16 +9,16 @@ import {
   getCommuneChart,
 } from '../controllers/communeController.js';
 
-// import { protect, admin } from '../middleware/authMiddleware.js';
-import { protectAdmin } from '../middleware/protectAdmin.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
+
 
 const router = Router();
 
-router.post('/', createcommune);
-router.get('/', getAllcommune);
-router.get('/chart', getCommuneChart);
-router.put('/:id', updatecommune);
-router.delete('/:id', deletecommune);
-router.get('/:id', getOnecommune);
+router.post('/',protect, createcommune);
+router.get('/',protect, getAllcommune);
+router.get('/chart',protect, getCommuneChart);
+router.put('/:id',protect, updatecommune);
+router.delete('/:id',protect, deletecommune);
+router.get('/:id',protect, getOnecommune);
 
 export default router;

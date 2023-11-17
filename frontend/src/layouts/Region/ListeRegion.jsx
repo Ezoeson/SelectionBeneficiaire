@@ -60,7 +60,7 @@ const ListeRegion = () => {
       <h2 className='text-xl font-semibold dark:text-slate-100'>
         Liste de tous les regions
       </h2>
-      <div className='flex items-center justify-between my-3'>
+      {/* <div className='flex items-center justify-between my-3'>
         <div className='border border-slate-700 dark:border-slate-500 md:w-80 w-40  rounded-md flex  px-3 items-center space-x-2  dark:text-white'>
           <RiSearchLine size={'20px'} />
           <input
@@ -79,6 +79,26 @@ const ListeRegion = () => {
             Ajout region
           </button>
         </div>
+      </div> */}
+      <div
+        onClick={toggleAddModal}
+        className='flex justify-end items-center my-2 '
+      >
+        <div className='flex   bg-indigo-500  rounded-md '>
+          <FiPlus size={'30px'} className='text-white' />
+          <button className=' text-white py-2 px-4    hidden md:block'>
+            Ajout Region
+          </button>
+        </div>
+      </div>
+      <div className=' flex  justify-end my-3 items-center'>
+        <input
+          onChange={(e) => setVal(e.target.value)}
+          value={val}
+          type='text'
+          placeholder='Recherche region'
+          className='block w-[96] rounded-md border-0 py-1.5 text-gray-900 dark:bg-slate-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+        />
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[1fr,2fr,max-content]'>

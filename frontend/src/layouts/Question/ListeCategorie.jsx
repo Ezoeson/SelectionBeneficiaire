@@ -24,6 +24,7 @@ import Input from '../../components/Input/Input';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { FiPlus } from 'react-icons/fi';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -83,13 +84,24 @@ const ListeCategorie = () => {
             </option>
           ))}
       </select>
-      <div className='flex items-center  justify-between my-3'>
+      {/* <div className='flex items-center  justify-between my-3'>
         <button
           onClick={toggleAddModal}
           className='bg-gradient-to-r from-cyan-400 to-indigo-600 text-white py-2 px-8 rounded cursor-pointer'
         >
           Ajouter Categorie
         </button>
+      </div> */}
+      <div
+        onClick={toggleAddModal}
+        className='flex justify-end items-center my-2 '
+      >
+        <div className='flex   bg-indigo-500  rounded-md '>
+          <FiPlus size={'30px'} className='text-white' />
+          <button className=' text-white py-2 px-4    hidden md:block'>
+            Ajout categorie
+          </button>
+        </div>
       </div>
       <div className='w-full min-h-[150px] bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[2fr,1fr,2fr,max-content]'>

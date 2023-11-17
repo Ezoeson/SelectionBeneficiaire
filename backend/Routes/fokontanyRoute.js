@@ -8,13 +8,13 @@ import {
 } from '../controllers/fokontanyController.js';
 const router = new Router();
 
-// import { protect, admin } from '../middleware/authMiddleware.js';
-import { protectAdmin } from '../middleware/protectAdmin.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
 
-router.post('/', createfokontany);
-router.get('/', getAllfokontany);
-router.put('/:id', updatefokontany);
-router.delete('/:id', deletefokontany);
-router.get('/:id', getOnefokontany);
+
+router.post('/',protect, createfokontany);
+router.get('/',protect, getAllfokontany);
+router.put('/:id',protect, updatefokontany);
+router.delete('/:id',protect, deletefokontany);
+router.get('/:id',protect, getOnefokontany);
 
 export default router;

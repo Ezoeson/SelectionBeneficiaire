@@ -11,7 +11,7 @@ const useTitle = () => {
     switch (pathname) {
       case '/':
         setTitle('Dashboard');
-         document.title = 'Dashboard';
+        document.title = 'Dashboard';
         break;
       case '/endroit':
         setTitle('Zone');
@@ -19,53 +19,54 @@ const useTitle = () => {
         break;
       case '/endroit/district':
         setTitle('Zone');
-        document.title ='zone'
+        document.title = 'zone';
         break;
       case '/endroit/commune':
         setTitle('Zone');
-         document.title = 'zone';
+        document.title = 'zone';
         break;
       case '/endroit/fokontany':
         setTitle('Zone');
-         document.title = 'zone';
+        document.title = 'zone';
         break;
 
       case '/enqueteur':
         setTitle('Enqueteur');
-         document.title = 'Enqueteur';
+        document.title = 'Enqueteur';
         break;
       case '/question':
         setTitle('Questionnaire');
-         document.title = 'Questionnaire';
+        document.title = 'Questionnaire';
         break;
       case '/question/categorie':
         setTitle('Questionnaire');
-         document.title = 'Questionnaire';
+        document.title = 'Questionnaire';
         break;
       case '/question/questions':
         setTitle('Questionnaire');
-         document.title = 'Questionnaire';
+        document.title = 'Questionnaire';
         break;
       case '/beneficiaires':
         setTitle('Beneficiaire');
-         document.title = 'Beneficiaire';
+        document.title = 'Beneficiaire';
         break;
       case '/beneficiaire':
         setTitle('Beneficiaire');
-         document.title = 'Beneficiaire';
+        document.title = 'Beneficiaire';
         break;
       case '/menage':
         setTitle('Menage');
-         document.title = 'Menage';
+        document.title = 'Menage';
         break;
       case '/parametreCompte':
         setTitle('Parametre du compte');
-         document.title = 'Parametre du compte';
+        document.title = 'Parametre du compte';
         break;
       case '/menage/personne':
-        setTitle('menage');
-         document.title = 'Personne';
+        setTitle('Menage');
+        document.title = 'Personne';
         break;
+
       default:
         setTitle('Dashboard');
         break;

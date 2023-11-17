@@ -11,7 +11,7 @@ import {
 } from '../controllers/comptecontroller.js';
 
 // import { protect, admin } from '../middleware/authMiddleware.js';
-import { protectAdmin } from '../middleware/protectAdmin.js';
+
 
 const router = Router();
 

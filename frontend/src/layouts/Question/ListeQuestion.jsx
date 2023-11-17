@@ -5,6 +5,7 @@ import TableRow from '../../components/Tables/TableRow';
 import { HiMiniTrash, HiMiniPencil, HiMiniUserCircle } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import { FcFullTrash } from 'react-icons/fc';
+import { FiPlus } from 'react-icons/fi';
 
 import {
   useGetQuestionQuery,
@@ -98,7 +99,7 @@ const ListeQuestion = () => {
             </option>
           ))}
       </select>
-      <div className='flex items-center justify-between my-3'>
+      {/* <div className='flex items-center justify-between my-3'>
         <div className=' '>
           <input
             type='text'
@@ -115,6 +116,27 @@ const ListeQuestion = () => {
         >
           Ajouter Question
         </button>
+      </div> */}
+      <div
+        onClick={toggleAddModal}
+        className='flex justify-end items-center my-2 '
+      >
+        <div className='flex   bg-indigo-500  rounded-md '>
+          <FiPlus size={'30px'} className='text-white' />
+          <button className=' text-white py-2 px-4    hidden md:block'>
+            Ajout question
+          </button>
+        </div>
+      </div>
+      <div className=' flex  justify-end my-3 items-center'>
+        <input
+          placeholder='Rechercher'
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          type='text'
+          
+          className='block w-[96] rounded-md border-0 py-1.5 text-gray-900 dark:bg-slate-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+        />
       </div>
       <div className='w-full min-h-[150px] bg-slate-50  rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
         <TableHeader col='md:grid-cols-[2fr,1fr,1fr,max-content]'>

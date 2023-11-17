@@ -8,17 +8,16 @@ import {
   GetSelectCategorieQuestion,
   getNombreQuestionByCategorie,
 } from '../controllers/categorieQuestionController.js';
-// import { protect, admin } from '../middleware/authMiddleware.js';
-import { protectAdmin } from '../middleware/protectAdmin.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = Router();
 
-router.get('/',  getAllCategorie);
-router.get('/nombre',  getNombreQuestionByCategorie);
-router.post('/',  createCategorieQuestion);
-router.put('/:id',  updateCategorieQuestion);
-router.delete('/:id',  deleteCategorieQuestion);
-router.get('/:id',  getOneCategorieQuestion);
-router.get('/:id/select',  GetSelectCategorieQuestion);
+router.get('/', protect, getAllCategorie);
+router.get('/nombre', protect, getNombreQuestionByCategorie);
+router.post('/', protect, createCategorieQuestion);
+router.put('/:id', protect, updateCategorieQuestion);
+router.delete('/:id', protect, deleteCategorieQuestion);
+router.get('/:id', protect, getOneCategorieQuestion);
+router.get('/:id/select', protect, GetSelectCategorieQuestion);
 
 export default router;
