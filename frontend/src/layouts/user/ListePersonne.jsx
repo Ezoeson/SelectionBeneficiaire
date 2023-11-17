@@ -378,14 +378,27 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
 
 const AddModal = ({ open, setOpen, refetch, enqueteurId }) => {
   const schema = yup.object().shape({
-    nom: yup.string().required('Entez le nom'),
-    prenom: yup.string().required('Entez le prenom'),
-    age: yup.number().required("Entez l'age"),
+    nom: yup.string().required('Entez le nom')
+        .min(5, 'Le nom doit comporter au moins 5 caractères'),
+    prenom: yup.string().required('Entez le prenom')
+            .min(2, 'Le nom doit comporter au moins 2 caractères'),
+    // age: yup.number().required("Entez l'age"),
+    age: yup
+      .number()
+      .min(0, "L'âge ne peut pas être négatif")
+      .required("Entrez l'âge"),
     sexe: yup.string().required('Entez le sexe'),
-    cin: yup
-      .string()
+    // cin: yup
+    //   .string()
+    //   .matches(/^\d{12}$/, 'Le CIN doit comporter exactement 12 chiffres')
+    //   .required('Entez le CIN'),
+    cin: yup.string()
       .matches(/^\d{12}$/, 'Le CIN doit comporter exactement 12 chiffres')
-      .required('Entez le CIN'),
+      .test('is-non-negative', 'Le CIN ne peut pas être négatif', (value) => {
+        if (!value) return true; // Si la valeur est vide, la validation passe
+        return !value.startsWith('-'); // Vérifie que la valeur ne commence pas par "-"
+      })
+      .required('Entrez le CIN'),
     type: yup.string().required('Entez le type'),
   });
   const [image, setImage] = useState('');
@@ -574,17 +587,35 @@ const AddModal = ({ open, setOpen, refetch, enqueteurId }) => {
 };
 
 const UpdateModal = ({ open, setOpen, refetch, id }) => {
-  const schema = yup.object().shape({
-    nom: yup.string().required('Entez le nom'),
-    prenom: yup.string().required('Entez le prenom'),
-    age: yup.number().required("Entez l'age"),
-    sexe: yup.string().required('Entez le sexe'),
-    cin: yup
-      .string()
-      .matches(/^\d{12}$/, 'Le CIN doit comporter exactement 12 chiffres')
-      .required('Entez le CIN'),
-    type: yup.string().required('Entez le type'),
-  });
+ const schema = yup.object().shape({
+   nom: yup
+     .string()
+     .required('Entez le nom')
+     .min(5, 'Le nom doit comporter au moins 5 caractères'),
+   prenom: yup
+     .string()
+     .required('Entez le prenom')
+     .min(2, 'Le nom doit comporter au moins 2 caractères'),
+   // age: yup.number().required("Entez l'age"),
+   age: yup
+     .number()
+     .min(0, "L'âge ne peut pas être négatif")
+     .required("Entrez l'âge"),
+   sexe: yup.string().required('Entez le sexe'),
+   // cin: yup
+   //   .string()
+   //   .matches(/^\d{12}$/, 'Le CIN doit comporter exactement 12 chiffres')
+   //   .required('Entez le CIN'),
+   cin: yup
+     .string()
+     .matches(/^\d{12}$/, 'Le CIN doit comporter exactement 12 chiffres')
+     .test('is-non-negative', 'Le CIN ne peut pas être négatif', (value) => {
+       if (!value) return true; // Si la valeur est vide, la validation passe
+       return !value.startsWith('-'); // Vérifie que la valeur ne commence pas par "-"
+     })
+     .required('Entrez le CIN'),
+   type: yup.string().required('Entez le type'),
+ });
   const [image, setImage] = useState('');
   const [uploadImage] = useUploadImageMutation();
   const handleUpload = async (e) => {

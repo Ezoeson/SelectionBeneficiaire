@@ -318,7 +318,8 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
 const AddModal = ({ open, setOpen, refetch }) => {
   // Create a schema
   const schema = yup.object().shape({
-    nom: yup.string().required('veuillez entrer votre nom'),
+    nom: yup.string().required('veuillez entrer votre nom')
+      .min(5, 'Le nom doit comporter au moins 5 caractères'),
 
     age: yup
       .number()
@@ -326,6 +327,7 @@ const AddModal = ({ open, setOpen, refetch }) => {
       .min(18, "L'âge doit être supérieur ou égal à 18")
       .max(60, "L'âge doit être inférieur ou égal à 60")
       .typeError('veuillez entrer un nombre'),
+      
     code: yup.string().required('veuillez entrez votre code'),
   });
 
@@ -495,9 +497,18 @@ const UpdateModal = ({ open, setOpen, refetch, id }) => {
   // Create a schema
 
   const schema = yup.object().shape({
-    nom: yup.string().required('veuillez entrer votre nom'),
+    nom: yup
+      .string()
+      .required('veuillez entrer votre nom')
+      .min(5, 'Le nom doit comporter au moins 5 caractères'),
 
-    age: yup.number().required(' veuillez entrer votre age '),
+    age: yup
+      .number()
+      .required(' veuillez entrer votre age ')
+      .min(18, "L'âge doit être supérieur ou égal à 18")
+      .max(60, "L'âge doit être inférieur ou égal à 60")
+      .typeError('veuillez entrer un nombre'),
+
     code: yup.string().required('veuillez entrez votre code'),
   });
 
