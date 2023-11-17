@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 import jwt from 'jsonwebtoken';
 
 const protect = asyncHandler(async (req, res, next) => {
-  const token = req.headers.cookie.split(';')[2].split("=")[1]
+  const token = req.headers?.cookie?.split(';')[2].split("=")[1]
   console.log(token);
   if (token) {
     try {
