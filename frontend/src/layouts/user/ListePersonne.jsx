@@ -75,7 +75,7 @@ const ListePersonne = () => {
           onClick={toggleAddModal}
           className='bg-blue-600 text-white py-2 px-8 rounded cursor-pointer'
         >
-          Ajouter Personnne
+          Ajout Personnne
         </button>
       </div>
       <div className='w-full min-h-[150px] bg-slate-50  dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
