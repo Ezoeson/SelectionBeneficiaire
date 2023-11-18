@@ -17,11 +17,11 @@ import { protect,admin } from '../middleware/authMiddleware.js';
 
 const router = Router();
 
-router.post('/create',protect, createRegion);
-router.get('/',protect, getAllregion);
-router.get('/:id',protect, getOneRegion);
+router.post('/create', createRegion);
+router.get('/', getAllregion);
+router.get('/:id', getOneRegion);
 router.put('/:id', updateRegion);
-router.delete('/:id',protect,  deleteRegion);
-router.get('/search/:value',protect,  searchRegion);
+router.delete('/:id',  deleteRegion);
+router.get('/search/:value',  searchRegion);
 
 export default router;

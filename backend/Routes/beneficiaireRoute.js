@@ -18,18 +18,18 @@ import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = new Router();
 
-router.get('/',protect, getAllBeneficiaire);
-router.get('/personne',protect, getBeneficiaireNombrePersonne);
+router.get('/', getAllBeneficiaire);
+router.get('/personne', getBeneficiaireNombrePersonne);
 
-router.get('/personne/note',protect, personneNote);
+router.get('/personne/note', personneNote);
 router.get('/note', getNote);
-router.post('/',protect, createBeneficiaire);
+router.post('/', createBeneficiaire);
 router.get('/count', countBeneficiaire);
-router.get('/:id',protect, geBeneficiaireById);
+router.get('/:id', geBeneficiaireById);
 
-router.delete('/:id',protect, deleteBeneficiaire);
+router.delete('/:id', deleteBeneficiaire);
 
-router.put('/:id',protect, updateBeneficiaire);
+router.put('/:id', updateBeneficiaire);
 router.get('/notes', getNoteBeneficiaire);
 
 export default router;
