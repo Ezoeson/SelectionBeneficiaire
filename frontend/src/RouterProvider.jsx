@@ -34,82 +34,101 @@ import {
 
 import { useUser, useAuth } from '@clerk/clerk-react';
 import NavLoader from './navLoader/NavLoader';
+import ReponsesQuestions from './layouts/ReponsesQuestions';
+import { useClerk } from '@clerk/clerk-react';
 
 const RouterProvider = () => {
+  const { signOut } = useClerk();
+  const handleSignOut = () => {
+    signOut();
+  };
   const { userId } = useAuth();
   const { data: compte, isLoading } = useGetCompteByClerkQuery(userId);
   const isAdmin = compte?.isAdmin;
+  const active = compte?.active;
 
   return (
     <>
+      {!active && !isLoading && (
+        <div className='flex dark:text-white justify-center h-full flex-col items-center w-full mt-[300px]'>
+          <p className='text-2xl'>Desole,Votre compte a ete desactive</p>
+          <button className='text-2xl bg-indigo-500' onClick={handleSignOut}>Retour</button>
+        </div>
+      )}
       {isLoading ? (
         <NavLoader />
       ) : (
-        <Routes>
-          <Route path='*' element={<ErrorPage />} />
-          <Route path='/' element={<AdminLayout />}>
-            <Route path='/' element={<BodyContentLayout />}>
-              {isAdmin && (
-                <>
-                  <Route path='/' element={<Dashboard />} />
-                  <Route path='/delete' element={<DeleteUser />} />
-                  <Route path='/endroit' element={<RegionLayout />}>
-                    <Route path='/endroit' element={<ListeRegion />} />
+        active && (
+          <Routes>
+            <Route path='*' element={<ErrorPage />} />
+            <Route path='/' element={<AdminLayout />}>
+              <Route path='/' element={<BodyContentLayout />}>
+                {isAdmin && (
+                  <>
+                    <Route path='/' element={<Dashboard />} />
+                    <Route path='/delete' element={<DeleteUser />} />
+                    <Route path='/endroit' element={<RegionLayout />}>
+                      <Route path='/endroit' element={<ListeRegion />} />
+                      <Route
+                        path='/endroit/district'
+                        element={<ListeDistrict />}
+                      />
+                      <Route
+                        path='/endroit/commune'
+                        element={<ListeCommune />}
+                      />
+                      <Route
+                        path='/endroit/fokontany'
+                        element={<ListeFokontany />}
+                      />
+                    </Route>
+                    <Route path='/enqueteur' element={<EnqueteurLayout />} />
                     <Route
-                      path='/endroit/district'
-                      element={<ListeDistrict />}
+                      path='/enqueteur/:pageNumber'
+                      element={<EnqueteurLayout />}
                     />
-                    <Route path='/endroit/commune' element={<ListeCommune />} />
+                    <Route path='/beneficiaires' element={<Beneficiaire />} />
                     <Route
-                      path='/endroit/fokontany'
-                      element={<ListeFokontany />}
+                      path='/reponsesQuestions/:id'
+                      element={<ReponsesQuestions />}
                     />
-                  </Route>
-                  <Route path='/enqueteur' element={<EnqueteurLayout />} />
-                  <Route
-                    path='/enqueteur/:pageNumber'
-                    element={<EnqueteurLayout />}
-                  />
-                  <Route path='/beneficiaires' element={<Beneficiaire />} />
-                  <Route
-                    path='/parametreCompte'
-                    element={<ParametreCompte />}
-                  />
+                    <Route
+                      path='/parametreCompte'
+                      element={<ParametreCompte />}
+                    />
 
-                  <Route path='/question' element={<QuestionLayout />}>
-                    <Route path='/question' element={<ListeFormulaire />} />
-                    <Route
-                      path='/question/categorie'
-                      element={<ListeCategorie />}
-                    />
-                    <Route
-                      path='/question/questions'
-                      element={<ListeQuestion />}
-                    />
-                  </Route>
-                </>
-              )}
-              {!isAdmin && (
-                <>
-                  <Route path='/' element={<UserDashboard />} />
-                  <Route path='/menage' element={<BeneficiaireLayout />}>
-                    <Route
-                      path='/menage'
-                      element={<ListeBeneficiare />}
-                    />
-                    <Route
-                      path='/menage/personne'
-                      element={<ListePersonne />}
-                    />
-                  </Route>
-                  <Route path='/reponse/:id' element={<Reponse />} />
-                  {/* <Route path='/note' element={<Beneficiaire />} /> */}
-                  <Route path='/beneficiaire' element={<Menage />} />
-                </>
-              )}
+                    <Route path='/question' element={<QuestionLayout />}>
+                      <Route path='/question' element={<ListeFormulaire />} />
+                      <Route
+                        path='/question/categorie'
+                        element={<ListeCategorie />}
+                      />
+                      <Route
+                        path='/question/questions'
+                        element={<ListeQuestion />}
+                      />
+                    </Route>
+                  </>
+                )}
+                {!isAdmin && (
+                  <>
+                    <Route path='/' element={<UserDashboard />} />
+                    <Route path='/menage' element={<BeneficiaireLayout />}>
+                      <Route path='/menage' element={<ListeBeneficiare />} />
+                      <Route
+                        path='/menage/personne'
+                        element={<ListePersonne />}
+                      />
+                    </Route>
+                    <Route path='/reponse/:id' element={<Reponse />} />
+                    {/* <Route path='/note' element={<Beneficiaire />} /> */}
+                    <Route path='/beneficiaire' element={<Menage />} />
+                  </>
+                )}
+              </Route>
             </Route>
-          </Route>
-        </Routes>
+          </Routes>
+        )
       )}
     </>
   );

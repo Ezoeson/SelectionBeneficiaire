@@ -19,6 +19,8 @@ import {
   useDeleteCompteMutation,
   useGetOneCompteQuery,
   useUpdateCompteMutation,
+  useGetCompteByClerkQuery,
+  useGetOneCompteByidQuery,
 } from '../redux/slices/compteSlice';
 import { useGetCommuneQuery } from '../redux/slices/communeSlice';
 import Loader from '../components/Loader/Loader';
@@ -45,7 +47,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const ParametreCompte = () => {
   const [val, setVal] = useState('');
 
-  const { data, isLoading, isSuccess, isFetching, isError,refetch } =
+  const { data, isLoading, isSuccess, isFetching, isError, refetch } =
     useGetCompteEnqueteurQuery();
 
   const [selectedId, setSelectedId] = useState('');
@@ -89,12 +91,13 @@ const ParametreCompte = () => {
         </div> */}
       </div>
       <div className='w-full min-h-[150px] bg-slate-50  dark:bg-slate-900 rounded-lg overflow-hidden  max-w-[1366px] xl:mx-auto '>
-        <TableHeader col='md:grid-cols-[1fr,2fr,2fr,max-content]'>
+        <TableHeader col='md:grid-cols-[1fr,2fr,2fr,1fr,max-content]'>
           <div className='md:hidden'>Informations</div>
 
           <div className='hidden md:block'>Pseudo</div>
           <div className='hidden md:block'>Email</div>
           <div className='hidden md:block'>clerkId</div>
+          <div className='hidden md:block'>Active</div>
 
           <div className='hidden md:block'>Actions</div>
         </TableHeader>
@@ -115,10 +118,12 @@ const ParametreCompte = () => {
                   />
                 </div>
               )}
-              {compte?.filter((item)=>(!item.isAdmin)).map((item) => (
+              {compte?.map((item) => (
                 <TableRow
                   key={item.id}
-                  col={'md:grid-cols-[1fr,2fr,2fr,max-content] items-center'}
+                  col={
+                    'md:grid-cols-[1fr,2fr,2fr,1fr,max-content] items-center'
+                  }
                 >
                   <div className='flex items-center space-x-2'>
                     {item.enqueteur?.image === null ? (
@@ -144,6 +149,11 @@ const ParametreCompte = () => {
                   <div className=''>
                     <span className='md:hidden font-bold'>ClerkId : </span>{' '}
                     {item.clerkId}
+                  </div>
+                  <div className=''>
+                    <span className='md:hidden font-bold'>Active : </span>{' '}
+                    {/* {item.active} */}
+                    <span>{item.active ? 'oui' : 'non'}</span>
                   </div>
 
                   <Actions
@@ -197,7 +207,7 @@ const Actions = ({
 
   return (
     <div className='flex items-center justify-center space-x-4'>
-      <HiMiniTrash onClick={deleteFunc} className='text-xl cursor-pointer' />
+      <HiMiniPencil onClick={deleteFunc} className='text-xl cursor-pointer' />
       {/* <HiMiniPencil onClick={updateFunc} className='text-xl cursor-pointer' /> */}
     </div>
   );
@@ -215,13 +225,27 @@ const ErrorPage = ({ refetch }) => {
 const DeleteModal = ({ open, setOpen, id, refetch }) => {
   const [show, setShow] = useState(true);
 
-  const [deleteCompte, { isLoading, isError, isSuccess }] =
-    useDeleteCompteMutation();
+  // const [deleteCompte, { isLoading, isError, isSuccess }] =
+  //   useDeleteCompteMutation();
+  const { data: compte, isLoading: loading } = useGetOneCompteByidQuery(id);
+  console.log(compte);
+  const [update, { isLoading, isError, isSuccess }] = useUpdateCompteMutation();
+  //   const [actives, setActives] = useState(!compte?.active);
+  //   const[active,setActive]= useState(!actives)
+  // console.log(active)
+  const initialActive = compte?.active ?? false; // Assurez-vous d'avoir une valeur par défaut au cas où compte ou compte.active serait undefined/null
+  const [active, setActive] = useState(initialActive);
 
-  const handleDelete = async () => {
+  console.log(initialActive);
+  const handleUpdate = async () => {
     try {
       setShow(false);
-      const res = await deleteCompte(id).unwrap();
+      const res = await update({
+        data: {
+          active: !initialActive,
+        },
+        id,
+      }).unwrap();
       refetch();
     } catch (error) {
       console.log(error);
@@ -251,7 +275,14 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
               </div>
               <div className='mt-3 text-center w-full flex justify-center items-center sm:ml-4 sm:mt-0 sm:text-left'>
                 <div className='mt-2 flex justify-center'>
-                  <FcFullTrash className='text-[175px]' />
+                  {/* <FcFullTrash className='text-[175px]' /> */}
+                  {!loading && (
+                    <div className='text-white'>
+                      {initialActive
+                        ? `Voulez-vous desactiver ce compte:? ${compte?.pseudo}`
+                        : `Voulez-vous activer ce compte?`}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -259,24 +290,24 @@ const DeleteModal = ({ open, setOpen, id, refetch }) => {
           <div className='bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
             <button
               type='button'
-              className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
-              onClick={handleDelete}
+              className='inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto'
+              onClick={handleUpdate}
             >
-              Supprimer
+              oui
             </button>
             <button
               type='button'
-              className='mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto'
+              className='mt-3 inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto'
               onClick={() => setOpen(false)}
             >
-              Annuler
+              non
             </button>
           </div>
         </>
       ) : isLoading ? (
-        <Message title='Suppression en cours' icon={Loader} />
+        <Message title='Modification en cours' icon={Loader} />
       ) : isSuccess ? (
-        <Message title='Suppression success' icon={FcCheckmark} />
+        <Message title='Modifcation success' icon={FcCheckmark} />
       ) : (
         isError && (
           <Message title='Something went wrong' icon={FcDeleteDatabase} />

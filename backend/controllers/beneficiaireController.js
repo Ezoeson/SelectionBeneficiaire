@@ -58,6 +58,38 @@ export const getBeneficiaireById = asyncHandler(async (req, res, next) => {
   });
   res.status(200).json(beneficiaire);
 });
+export const getReponseBeneficiaire = asyncHandler(async (req, res, next) => {
+  const beneficiaire = await prisma.beneficiaire.findUnique({
+    where: {
+      id: req.params.id,
+    },
+    include: {
+      enqueteur:true,
+      note: true,
+      fokontany: true,
+      personne: {
+        where: {
+          type: 'RECEPTEUR',
+        },
+        include: {
+          reponse: {
+            select: {
+              question: {
+                select: {
+                  question: true,
+                  scoreOui:true,
+                  scoreNon:true
+                },
+              },
+              reponse: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  res.status(200).json(beneficiaire);
+});
 
 //
 

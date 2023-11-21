@@ -8,7 +8,7 @@ export const compteSlice = apiSlice.injectEndpoints({
         url: URL_COMPTE,
       }),
       providesTags: ['Compte'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 1,
     }),
     getCompteEnqueteur: builder.query({
       query: () => ({
@@ -31,6 +31,13 @@ export const compteSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: URL_COMPTE + '/poste/poste/' ,
+        method: 'POST',
+        body:data
+      }),
+    }),
     updateCompte: builder.mutation({
       query: ({ data, id }) => ({
         url: URL_COMPTE + '/' + id,
@@ -50,7 +57,14 @@ export const compteSlice = apiSlice.injectEndpoints({
         url: URL_COMPTE + '/' + id,
       }),
 
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
+    }),
+    getOneCompteByid: builder.query({
+      query: (id) => ({
+        url: URL_COMPTE + '/getss/' + id,
+      }),
+
+      keepUnusedDataFor: 1,
     }),
   }),
 });
@@ -62,5 +76,7 @@ export const {
   useDeleteCompteMutation,
   useGetOneCompteQuery,
   useUpdateCompteMutation,
-  useUpdateCompteByclerkMutation
+  useUpdateCompteByclerkMutation,
+  useGetOneCompteByidQuery,
+  useLoginMutation
 } = compteSlice;

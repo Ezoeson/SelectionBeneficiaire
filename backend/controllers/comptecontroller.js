@@ -7,7 +7,7 @@ export const getCompteById = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const compte = await prisma.compte.findUnique({
     where: {
-      OR: [{ id: id }, { clerkId: id }],
+      id
     },
   });
   res.status(200).json(compte);
@@ -23,25 +23,19 @@ export const getAllCompte = asyncHandler(async (req, res, next) => {
 
 export const updateCompte = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
-  const { pseudo, password, email, clerkId, codeEnqueteur, isAdmin } = req.body;
-  const hashpassword = await bcrypt.hash(password, 10);
+
   const compte = await prisma.compte.update({
     where: {
       id: id,
     },
     data: {
-      pseudo,
-      email,
-      password: hashpassword,
-      clerkId,
-      codeEnqueteur,
-      isAdmin,
+      ...req.body,
     },
   });
   res.status(200).json(compte);
 });
 export const updateCompteBYClerk = asyncHandler(async (req, res, next) => {
-  const { password,email } = req.body;
+  const { password, email } = req.body;
   const hashpassword = await bcrypt.hash(password, 10);
   const compte = await prisma.compte.update({
     where: {
@@ -49,7 +43,7 @@ export const updateCompteBYClerk = asyncHandler(async (req, res, next) => {
     },
     data: {
       password: hashpassword,
-      email
+      email,
     },
   });
   res.status(200).json(compte);
@@ -91,6 +85,7 @@ export const getCompte = asyncHandler(async (req, res, next) => {
       pseudo: true,
       email: true,
       clerkId: true,
+      active:true,
 
       enqueteur: {
         select: {
@@ -113,3 +108,17 @@ export const verificationCompte = asyncHandler(async (res, req, next) => {
   }
   return res.status(200).json({ verification, Message: 'Vouz avez un compte' });
 });
+export const login = asyncHandler(async(req,res,next)=>{
+  console.log('mandeha')
+  const {pseudo,password}= req.body
+  const compte = await prisma.compte.findUnique({
+    where:{
+      pseudo
+    }
+  })
+  if(compte.active){
+     res.status(200).json("Votre compte est active")
+  }else{
+    return res.status(400).json("votre compte a ete desactive")
+  }
+})

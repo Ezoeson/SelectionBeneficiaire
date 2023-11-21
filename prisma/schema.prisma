@@ -52,6 +52,7 @@ model Compte{
    codeEnqueteur String ?  @unique 
    enqueteur Enqueteur?  @relation(fields: [codeEnqueteur], references: [code],onDelete: Cascade)
    clerkId String ? @unique
+   active Boolean @default(true)
 }
 model Enqueteur{
   id String @id @default(auto()) @map("_id") @db.ObjectId

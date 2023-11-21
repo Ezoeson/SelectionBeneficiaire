@@ -5,6 +5,8 @@ import TableRow from '../components/Tables/TableRow';
 import { HiMiniTrash, HiMiniPencil } from 'react-icons/hi2';
 import { FcDeleteDatabase, FcCheckmark } from 'react-icons/fc';
 import { FcFullTrash } from 'react-icons/fc';
+import { TbEyeShare } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 import {
   useGetBeneficiaireQuery,
@@ -31,10 +33,12 @@ const Beneficiaire = () => {
   const [selectedId, setSelectedId] = useState('');
 
   const [deleteModal, setDeleteModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const toggleAddModal = () => setAddModal(!addModal);
   const toggleUpdateModal = () => setUpdateModal(!addModal);
+    const toggleShowModal = () => setShowModal(!showModal);
   const [val, setVal] = useState('');
   const filteredBeneficiaires = data?.beneficiaire.filter((item) =>
     val === ''
@@ -228,6 +232,7 @@ const Beneficiaire = () => {
                     setSelectedId={setSelectedId}
                     toggleDeleteModal={toggleDeleteModal}
                     toggleUpdateModal={toggleUpdateModal}
+                    toggleShowModal={toggleShowModal}
                   />
                 </TableRow>
               ))}
@@ -249,6 +254,12 @@ const Beneficiaire = () => {
         id={selectedId}
         refetch={refetch}
       />
+      <ShowModal
+        open={showModal}
+        setOpen={setShowModal}
+        id={selectedId}
+        // image={image}
+      />
     </div>
   );
 };
@@ -258,14 +269,20 @@ const Actions = ({
   setSelectedId,
   toggleDeleteModal,
   toggleUpdateModal,
+  toggleShowModal,
 }) => {
   const deleteFunc = () => {
     setSelectedId(id);
     toggleDeleteModal();
   };
+    const showFunc = () => {
+      setSelectedId(id);
+      toggleShowModal();
+    };
 
   return (
     <div className='flex items-center justify-center space-x-4'>
+      <TbEyeShare onClick={showFunc} className='text-xl cursor-pointer' />
       <HiMiniTrash onClick={deleteFunc} className='text-xl' />
     </div>
   );
@@ -279,6 +296,57 @@ const ErrorPage = ({ refetch }) => {
         Une erreur s'est produite
       </h2>
     </div>
+  );
+};
+const ShowModal = ({ open, setOpen, id, image }) => {
+  const navigate = useNavigate();
+  const navigation = () => {
+    navigate('/reponsesQuestions/' + id);
+  };
+  return (
+    <Modal open={open} setOpen={setOpen}>
+      <>
+        <div className='bg-white dark:bg-slate-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4'>
+          <div className='sm:flex sm:items-start'>
+            <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
+              <Dialog.Title
+                as='h3'
+                className='text-base font-semibold leading-6 dark:text-slate-100 text-gray-900'
+              >
+                Voulez-vous vraiment voir les reponses de ce beneficiaire?
+              </Dialog.Title>
+              <div className='mt-2 flex justify-center'>
+                {/* <div className='flex items-center space-x-2'>
+                  <img
+                    src={'/api' + image}
+                    alt=''
+                    className='w-[140px] h-[140px] rounded-full object-cover'
+                  />
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='bg-gray-50 dark:bg-slate-900  px-4 py-8 sm:flex sm:flex-row-reverse justify-center sm:px-6'>
+          <button
+            type='button'
+            className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
+          >
+            Non
+          </button>
+          <button
+            type='button'
+            className='inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto'
+            onClick={() => {
+              setOpen(false);
+              navigation();
+            }}
+          >
+            oui
+          </button>
+        </div>
+      </>
+    </Modal>
   );
 };
 

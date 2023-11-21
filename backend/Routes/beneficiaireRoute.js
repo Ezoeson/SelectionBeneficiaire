@@ -11,6 +11,7 @@ import {
   getBeneficiaireNombrePersonne,
   personneNote,
   getNoteByPersonne,
+  getReponseBeneficiaire
 } from '../controllers/beneficiaireController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 
@@ -22,6 +23,7 @@ router.get('/', getAllBeneficiaire);
 router.get('/personne', getBeneficiaireNombrePersonne);
 
 router.get('/personne/note', personneNote);
+router.get('/beneficiaire/:id', getReponseBeneficiaire);
 router.get('/note', getNote);
 router.post('/', createBeneficiaire);
 router.get('/count', countBeneficiaire);

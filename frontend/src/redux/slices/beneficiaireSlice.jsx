@@ -39,6 +39,11 @@ export const beneficiaireSlice = apiSlice.injectEndpoints({
         url: URL_BENEFICIAIRE + '/' + id,
       }),
     }),
+    getOneBeneficiaireReponse: builder.query({
+      query: (id) => ({
+        url: URL_BENEFICIAIRE + '/beneficiaire/' + id,
+      }),
+    }),
     deleteBeneficiaire: builder.mutation({
       query: (id) => ({
         url: URL_BENEFICIAIRE + '/' + id,
@@ -80,4 +85,5 @@ export const {
   useDeleteNoteMutation,
   useGetNoteByPersonneQuery,
   useGetBeneficiaireNombrePersonneQuery,
+  useGetOneBeneficiaireReponseQuery
 } = beneficiaireSlice;
