@@ -15,7 +15,7 @@ export const compteSlice = apiSlice.injectEndpoints({
         url: URL_COMPTE + '/get',
       }),
       providesTags: ['Compte'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
 
     getCompteByClerk: builder.query({
@@ -63,7 +63,6 @@ export const compteSlice = apiSlice.injectEndpoints({
       query: (id) => ({
         url: URL_COMPTE + '/getss/' + id,
       }),
-
       keepUnusedDataFor: 1,
     }),
   }),

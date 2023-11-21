@@ -69,7 +69,7 @@ export const enqueteurSlice = apiSlice.injectEndpoints({
         url: `${URL_ENQUETEUR}/search/enqueteur/${enqueteurSearch}`,
       }),
       providesTags: ['Enqueteur'],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 2,
     }),
   }),
 });

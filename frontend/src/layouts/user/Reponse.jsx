@@ -132,7 +132,7 @@ function Reponse() {
   return (
     <div className=' mt-4 border mx-4 p-8  shadow-xl rounded-md shadow-blue-700'>
       {isSuccess && <Confetti />}
-      {loadingClasse && <div>......</div> }
+      {loadingClasse && <div>Loading ...</div> }
       <form
         action=''
         onSubmit={handleSubmit(onSubmit)}

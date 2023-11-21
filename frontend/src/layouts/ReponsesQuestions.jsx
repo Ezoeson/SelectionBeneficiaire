@@ -3,6 +3,8 @@ import { useGetOneBeneficiaireReponseQuery } from '../redux/slices/beneficiaireS
 import { useParams } from 'react-router-dom';
 import LoadingForm from '../components/LoadingForm/LoadingForm';
 import ClerkLoader from '../components/clerkLoader/ClerkLoader';
+import { motion } from 'framer-motion';
+
 
 function ReponsesQuestions() {
   const beneficiaireId = useParams();
@@ -10,6 +12,25 @@ function ReponsesQuestions() {
     beneficiaireId.id
   );
   console.log(data);
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
   return (
     <div className='mt-4 border mx-4 p-8  shadow-xl rounded-md shadow-blue-700'>
       {isLoading && (
@@ -19,7 +40,15 @@ function ReponsesQuestions() {
       )}
       {isSuccess && !isLoading && (
         <div>
-          <div className='border'>
+          <div className='border '>
+            <div className='text-center dark:text-slate-100  font-bold'>
+              <img
+                src={'/api' + data?.enqueteur?.image}
+                className='w-20 h-20 rounded-full object-cover  mx-auto mt-5'
+                alt=''
+              />{' '}
+              {/* {data?.enqueteur?.nom} */}
+            </div>
             <div className='text-center dark:text-slate-100  font-bold'>
               Nom enqueteur: {data?.enqueteur?.nom}
             </div>
@@ -48,9 +77,17 @@ function ReponsesQuestions() {
               <div key={personne.id}>
                 <div>
                   {personne?.reponse?.map((reponse) => (
-                    <div key={reponse.id}>
-                      <div className='mx-2 mt-5 flex justify-center dark:text-white gap-3 w-full '>
-                        <div>
+                    <motion.div
+                      variants={container}
+                      initial='hidden'
+                      animate='visible'
+                      key={reponse.id}
+                    >
+                      <motion.div
+                        variants={item}
+                        className='mx-2 mt-5 flex justify-center dark:text-white gap-3 w-full '
+                      >
+                        <div className='grid grid-cols-5'>
                           <span>{reponse?.question?.question}</span> :{' '}
                           <span className='text-blue-800 font-bold'>
                             {reponse?.reponse}
@@ -64,8 +101,8 @@ function ReponsesQuestions() {
                             </span>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
