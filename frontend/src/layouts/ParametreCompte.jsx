@@ -97,7 +97,7 @@ const ParametreCompte = () => {
           <div className='hidden md:block'>Pseudo</div>
           <div className='hidden md:block'>Email</div>
           <div className='hidden md:block'>clerkId</div>
-          <div className='hidden md:block'>Compte</div>
+          <div className='hidden md:block'>Status</div>
 
           <div className='hidden md:block'>Actions</div>
         </TableHeader>
@@ -151,7 +151,7 @@ const ParametreCompte = () => {
                     {item.clerkId}
                   </div>
                   <div className=''>
-                    <span className='md:hidden font-bold'>Compte : </span>{' '}
+                    <span className='md:hidden font-bold'>Status: </span>{' '}
                     {/* {item.active} */}
                     <span>
                       {item.active ? (
