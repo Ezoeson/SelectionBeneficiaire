@@ -7,7 +7,7 @@ export const getCompteById = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const compte = await prisma.compte.findUnique({
     where: {
-      id
+      id,
     },
   });
   res.status(200).json(compte);
@@ -85,7 +85,7 @@ export const getCompte = asyncHandler(async (req, res, next) => {
       pseudo: true,
       email: true,
       clerkId: true,
-      active:true,
+      active: true,
 
       enqueteur: {
         select: {
@@ -108,17 +108,22 @@ export const verificationCompte = asyncHandler(async (res, req, next) => {
   }
   return res.status(200).json({ verification, Message: 'Vouz avez un compte' });
 });
-export const login = asyncHandler(async(req,res,next)=>{
-  console.log('mandeha')
-  const {pseudo,password}= req.body
+export const login = asyncHandler(async (req, res, next) => {
+  console.log('mandeha');
+  const { pseudo, password } = req.body;
   const compte = await prisma.compte.findUnique({
-    where:{
-      pseudo
+    where: {
+      pseudo,
+    },
+  });
+
+  if (compte) {
+    if (compte.active) {
+      res.status(200).json('Votre compte est actif');
+    } else {
+      return res.status(400).json('Votre compte a été désactivé');
     }
-  })
-  if(compte.active){
-     res.status(200).json("Votre compte est active")
-  }else{
-    return res.status(400).json("votre compte a ete desactive")
+  } else {
+    return res.status(404).json('Compte introuvable');
   }
-})
+});
